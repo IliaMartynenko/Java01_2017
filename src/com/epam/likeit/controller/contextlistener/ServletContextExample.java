@@ -15,7 +15,7 @@ import javax.servlet.ServletContextListener;
 
 
 public class ServletContextExample implements ServletContextListener{
-    ServletContext context;
+
 
     @Override
     public void contextDestroyed(ServletContextEvent contextEvent) {
