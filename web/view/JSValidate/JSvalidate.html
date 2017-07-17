@@ -1,0 +1,97 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<form onSubmit="return check()" name="form">
+    <section class="container one">
+        <p><label  >Имя</label>
+            <input  type="text" id="user_name" name="user_name" title="Латинские буквы, цифры, _, первый символ – латинская буква), кол-во
+            символов не менее 5."  ><span class="err" id="err-uname"></span></p>
+        <p><label>Пароль</label>
+            <input type="password"  id="password"  name="password" title="Не менее 6 символов,не менее одной буквы в каждом регистре и не менее одной
+цифры" ><span class="err" id="err-pwd1"></span></p>
+
+        <p><label >Повторите</label>
+            <input  type="password" id="password-check" title="Не менее 6 символов,не менее одной буквы в каждом регистре и не менее одной
+цифры" name="password" ><span class="err" id="err-pwd2"></span></p>
+
+        <p><label >Возраст</label>
+            <input type="text" id="age" name="age" title="Число от 7 до 120"  ><span></span></p>
+
+
+
+        <p><label>Страна</label>
+            <input  type="text" id="country" title="Название с большой буквы"  ><span></span></p>
+
+
+        <div id="items" > <p><label id="email">Почтовый ящик</label>
+            <input  type="text" id="mail" title="Mail имеет общий вид iva@mail.ru" name="email"  ><span></span></p>
+        </div>
+
+        <button  type="submit">Зарегистрироваться</button>
+
+</section>
+
+</form>
+
+<script>
+
+    function check() {
+
+        var user_name = document.getElementById("user_name").value;
+        var password = document.getElementById("password").value;
+        var password2 = document.getElementById("password-check").value;
+        var age = Number(document.getElementById("age").value);
+        var country = document.getElementById("country").value;
+        var mail = document.getElementById("mail").value;
+        var bad = "";
+
+        if (user_name.length < 5) {
+            bad += "Имя слишком короткое" + "\n";
+        }
+
+        if (!user_name.match(new RegExp("^[a-zA-Z][a-zA-Z0-9-_\\.]{4,40}$"))) {
+            bad += "Неправильно введено имя" + "\n";
+
+        }
+
+        if (!mail.match(new RegExp("^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$"))) {
+            bad += "Неправильно написан email" + "\n";
+
+        }
+        if (password.length < 6) {
+            bad += "Пароль слишком короткий" + "\n";
+        }
+        if (!password.match("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$")) {
+            bad += "Неправильно введен пароль" + "\n";
+        }
+        if (password !== password2) {
+            bad += "Пароли не совпадают" + "\n";
+
+        }
+        if (age > 120 || age < 7) {
+            bad += "Возраст:Ввведите число от 7 до 120" + "\n";
+
+        }
+        if (!country.match(new RegExp("^[A-Z][a-z]{1,50}$"))) {
+            bad += "Неправильно написана страна проживания" + "\n";
+
+        }
+
+        if (bad != "") {
+            bad = "Неверно заполнена форма:" + "\n" +"\n"+ bad;
+            alert(bad);
+            return false;
+        }
+
+    alert("Форма заполнена правильно!");
+    return true;
+    }
+</script>
+
+</body>
+</html>

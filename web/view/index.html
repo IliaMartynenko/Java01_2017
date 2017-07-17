@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Форум LikeIT</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+
+<header>
+    <h1>LikeIT</h1>
+    <h2>Лучший форум для обсуждения <br>повседневных тем и вопросов</h2>
+
+    <div class="headimg">
+        <img src="images/124.jpg" alt="LikeIT">
+    </div>
+
+
+
+    <div class="block1">
+
+        <form action="/SignIn" method="POST">
+            <b>Логин:</b>
+            <input type="text" maxlength="25" size="20" name="login">
+
+
+
+            <b>Пароль:</b>
+            <input type="password" maxlength="25" size="20" name="password">
+
+            <input type="submit" value="Войти">
+            <input type="checkbox" id="ch" ><label for="ch"><b>Запомнить меня</b></label>
+
+             <input type="button"  value="Регистрация">
+            <p><input type="search" name="q" placeholder="Поиск по сайту">
+                <input type="submit" value="Найти"></p>
+        </form>
+    </div>
+
+    <button class="knopka" type="button">Помощь</button>
+    <button class="knopka" type="button">Создать тему</button>
+    <button class="knopka" type="button">Посмотреть статистику сайта</button>
+
+
+
+</header>
+<div id='main'>
+
+
+    <article>
+
+
+
+
+<h2 class="actual">Актуальные вопросы пользователей</h2>
+
+<h2>Политика</h2>
+        <table class="tftable" >
+        <tr><th>Автор</th><th>Вопрос</th><th>Дата добавления</th><th>Количество просмотров</th><th>Количество ответов</th></tr>
+        <tr><td><a href="index.html">oleg99</a></td><td><a href="">Как относитесь к политике Трампа?</a></td><td>2017-05-11</td><td>193</td><td>34</td></tr>
+            <tr><td><a href="index.html">eXtream</a></td><td><a href="">Выборы в РФ 2018</a></td><td>2017-05-03</td><td>67</td><td>44</td></tr>
+            <tr><td><a href="index.html">viktor_by</a></td><td><a href="index.html">Холодная война 2017</a>></td><td>2017-05-01</td><td>34</td><td>15</td></tr>
+    </table>
+
+
+<h2>Спорт</h2>
+
+        <table class="tftable" >
+            <tr><th>Автор</th><th>Вопрос</th><th>Дата добавления</th><th>Количество просмотров</th><th>Количество ответов</th></tr>
+            <tr><td><a href="index.html">oleg99</a></td><td><a href="">Польза бега</a></td><td>2017-05-11</td><td>131</td><td>42</td></tr>
+            <tr><td><a href="index.html">ivan_RB</a></td><td><a href="">Бокс или тренажерный зал</a></td><td>2017-05-03</td><td>67</td><td>44</td></tr>
+            <tr><td><a href="index.html">viktor_by</a></td><td><a href="">Как совмещать работу и спорт?</a>></td><td>2017-05-01</td><td>34</td><td>15</td></tr>
+        </table>
+
+
+
+          <h2>Автомобили</h2>
+
+        <table class="tftable" >
+            <tr><th>Автор</th><th>Вопрос</th><th>Дата добавления</th><th>Количество просмотров</th><th>Количество ответов</th></tr>
+            <tr><td><a href="index.html">klib</a></td><td><a href="">AUDI vs BMW</a></td><td>2017-05-11</td><td>165</td><td>39</td></tr>
+            <tr><td><a href="index.html">brazerof</a></td><td><a href="">Не работает спидометр</a></td><td>2017-05-03</td><td>167</td><td>41</td></tr>
+            <tr><td><a href="index.html">valera91</a></td><td><a href="">Где купить бюджетное авто?</a>></td><td>2017-05-01</td><td>124</td><td>15</td></tr>
+        </table>
+
+
+        <h2>Компьютеры</h2>
+
+        <table class="tftable" >
+            <tr><th>Автор</th><th>Вопрос</th><th>Дата добавления</th><th>Количество просмотров</th><th>Количество ответов</th></tr>
+            <tr><td><a href="index.html">bond_007</a></td><td><a href="">Java vs C++</a></td><td>2017-05-11</td><td>165</td><td>39</td></tr>
+            <tr><td><a href="index.html">marker</a></td><td><a href="">Посоветуйте книги по SQL</a></td><td>2017-09-03</td><td>167</td><td>41</td></tr>
+            <tr><td><a href="index.html">boris_kovalik</a></td><td><a href="">Помогите разобраться с ООП</a>></td><td>2017-05-01</td><td>124</td><td>15</td></tr>
+        </table>
+
+
+           <h2>Книги</h2>
+
+        <table class="tftable" >
+            <tr><th>Автор</th><th>Вопрос</th><th>Дата добавления</th><th>Количество просмотров</th><th>Количество ответов</th></tr>
+            <tr><td><a href="index.html">kevin_13</a></td><td><a href="">Как не испортить зрения при чтении?</a></td><td>2017-08-10</td><td>105</td><td>139</td></tr>
+            <tr><td><a href="index.html">marker</a></td><td><a href="">Посоветуйте книги в жанре фантастика</a></td><td>2017-01-03</td><td>11</td><td>41</td></tr>
+            <tr><td><a href="index.html">leonid.ivanov</a></td><td><a href="">Как быстро научиться очень быстрос читать?</a>></td><td>2017-02-01</td><td>14</td><td>15</td></tr>
+        </table>
+
+    </article>
+
+
+    <aside>
+
+        <h3>ТОП-10 по рейтингу посетителей форума</h3>
+
+        <ol class="rounded">
+            <li><a href="#">RiSC_tm</a></li>
+            <li><a href="#">pavel_dmitrenko</a></li>
+            <li><a href="#">polish_hero</a></li>
+            <li><a href="#">vadim.kornineko</a></li>
+            <li><a href="#">eXTream</a></li>
+            <li><a href="#">lena__1995</a></li>
+            <li><a href="#">oleg.litv.by</a></li>
+            <li><a href="#">best_user89</a></li>
+            <li><a href="#">Lion</a></li>
+            <li><a href="#">kanye_westt</a></li>
+
+        </ol>
+
+        <h3>Самые просматриваемые темы форума</h3>
+
+
+        <table class="tftable">
+           <tr><th>Тема обсуждения</th>
+            <th>Количество просмотров</th>
+            <th>Количество комментариев</th></tr>
+            <tr>
+                <td><a href="index.html">AUDI vs BMW</a></td>
+                <td>543</td>
+                <td>169</td>
+            </tr>
+
+            <tr>
+                <td><a href="index.html">Выборы в РФ 2018</a></td>
+                <td>511</td>
+                <td>200</td>
+            </tr>
+
+            <tr>
+                <td><a href="index.html">Java vs C++</a></td>
+                <td>421</td>
+                <td>140</td>
+            </tr>
+
+            <tr>
+                <td><a href="index.html">Как получить американское гражданство?</a></td>
+                <td>421</td>
+                <td>140</td>
+            </tr>
+
+            <tr>
+                <td><a href="index.html">Продолжение звездных войн</a></td>
+                <td>345</td>
+                <td>110</td>
+            </tr>
+
+            <tr>
+                <td><a href="index.html">Лучшая режиссер современности,кто он?</a></td>
+                <td>300</td>
+                <td>104</td>
+            </tr>
+
+            <tr>
+                <td><a href="index.html">Как работать фрилансером?</a></td>
+                <td>295</td>
+                <td>94</td>
+            </tr>
+
+            <tr>
+                <td><a href="index.html">На какой курорт поехать в 2017?</a></td>
+                <td>243</td>
+                <td>87</td>
+            </tr>
+
+
+            <tr>
+                <td><a href="index.html">Самый влиятельный политик мира</a></td>
+                <td>204</td>
+                <td>43</td>
+            </tr>
+
+
+
+
+
+
+
+
+        </table>
+
+
+
+        <button class="knopka" type="button">Показатель онлайн пользователей на форуме</button>
+    </aside>
+</div>
+
+
+
+
+<footer>
+    <div class="foot">
+      <h6>  <a href="">Обратная связь</a></h6>
+
+        <h6><a href="">Пожаловаться</a></h6>
+
+        <h6> <a href="">Оставить отзыв</a></h6>
+
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>

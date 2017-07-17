@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="servlet-api">
+    <archive path="E:/Загрузки/apache-tomcat-7.0.72-windows-x64/lib/servlet-api.jar" />
+    <archive path="E:/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar" />
+  </library>
+  <library name="src" />
+  <library name="apache-tomcat-8.5.11-windows-x64">
+    <archive path="E:/Загрузки/apache-tomcat-7.0.72-windows-x64" />
+  </library>
+</eclipse-userlibraries>
+
