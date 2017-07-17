@@ -1,4 +1,4 @@
-package com.epam.likeit.controller;
+package com.epam.likeit.controller.contextlistener;
 
 import com.epam.likeit.bean.Question;
 import com.epam.likeit.bean.Review;
@@ -13,9 +13,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-/**
- * Created by mts7072572 on 15.07.2017.
- */
+
 public class ServletContextExample implements ServletContextListener{
     ServletContext context;
 
@@ -52,6 +50,8 @@ public class ServletContextExample implements ServletContextListener{
 
 
         }
-        catch(ServiceException e){}
+        catch(ServiceException e){
+            e.printStackTrace();
+        }
     }
 }

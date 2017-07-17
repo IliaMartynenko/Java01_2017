@@ -6,7 +6,7 @@
 
     <listener>
         <listener-class>
-           com.epam.likeit.controller.ServletContextExample
+            com.epam.likeit.controller.contextlistener.ServletContextExample
         </listener-class>
     </listener>
 
