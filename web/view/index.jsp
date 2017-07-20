@@ -32,9 +32,10 @@
 
   <div class="block1">
 
-    <form  action="/SignIn" method="post">
+    <form  action="/controller" method="post">
       <b>Логин:</b>
       <input type="text" maxlength="25" size="20" name="login">
+      <input type="hidden" name="command" value="sign_in">
 
 
 
@@ -50,10 +51,7 @@
       <input type="submit"  value="Регистрация">
     </form>
 
-    <form action="/SignIn" method="get">
-      <p><input type="search" name="q" placeholder="Поиск по сайту">
-        <input type="submit" value="Найти"></p>
-    </form>
+
 
 
   </div>
@@ -82,51 +80,63 @@
 
     <h2>Политика</h2>
     <table class="tftable">
-      <tr><th>Автор</th><th>Вопрос</th><th>Дата добавления</th><th>Количество просмотров</th><th>Количество ответов</th></tr>
+      <tr><th></th><th>Вопрос</th><th>Дата добавления</th><th>Количество ответов</th></tr>
       <%
         List<Question> questionList=(List)application.getAttribute("questions_by_answers");
-        List<User> userList=(List)application.getAttribute("users");
+        List<Question> questionList1=(List)application.getAttribute("allowed_questions");
+
         List <Question> politicQuestions=(List)application.getAttribute("politic");
         List <Question> sportQuestions=(List)application.getAttribute("sport");
         List <Question> studyQuestions=(List)application.getAttribute("study");
-        List <Question> booksQuestions=(List)application.getAttribute("books");
-        List <Question> travelsQuestions=(List)application.getAttribute("travels");
-        List <Question> computersQuestions=(List)application.getAttribute("computers");
-        List <Question> cinemaQuestions=(List)application.getAttribute("cinema");
-        List <Question> musicQuestions=(List)application.getAttribute("music");
-        List <Question> carsQuestions=(List)application.getAttribute("cars");
 
 
-        for(Question q:politicQuestions){
+
+
+
+
+        for(Question q:questionList1){
+            if(q.getIdTopic()==1){
       %>
 
 
-      <tr><td><a href="index.html"></a></td><td><a href=""><%=q.getText()%></a></td>
+      <tr><td><form action="/controller" method="post">
+        <input type="hidden" name="command" value="get_answer">
+        <input type="submit" value="Открыть тему">
+        <input type="hidden" name="id_question" value="<%=q.getIdQuestion()%>">
+
+      </form></td>
+        <td><a href=""><%=q.getText()%></a></td>
         <td><%=q.getDateOfCreate()%></td>
         <td><%=q.getSumOfanswers()%></td></tr>
+      <%}%>
       <%}%>
     </table>
 
 
     <h2>Спорт</h2>
     <table class="tftable" >
-      <tr><th>Автор</th><th>Вопрос</th><th>Дата добавления</th><th>Количество просмотров</th><th>Количество ответов</th></tr>
+      <tr><th></th><th>Вопрос</th><th>Дата добавления</th><th>Количество ответов</th></tr>
 
-      <%for(Question q:sportQuestions){
+      <%for(Question q:questionList1){
+        if(q.getIdTopic()==2){
       %>
 
 
-      <tr><td><a href="index.html"></a></td>
+
+
+
+
+      <tr><td><form action="/controller" method="post">
+        <input type="hidden" name="command" value="get_answer">
+         <input type="submit" value="Открыть тему">
+        <input type="hidden" name="id_question" value="<%=q.getIdQuestion()%>">
+
+      </form></td>
         <td><a href=""><%=q.getText()%></a></td>
         <td><%=q.getDateOfCreate()%></td>
         <td><%=q.getSumOfanswers()%></td></tr>
       <%}%>
-
-
-
-
-
-
+      <%}%>
     </table>
 
 
@@ -134,82 +144,29 @@
     <h2>Учёба</h2>
 
     <table class="tftable" >
-      <tr><th>Автор</th><th>Вопрос</th><th>Дата добавления</th><th>Количество просмотров</th><th>Количество ответов</th></tr>
+      <tr><th>Автор</th><th>Вопрос</th><th>Дата добавления</th><th>Количество ответов</th></tr>
 
       <%for(Question q:studyQuestions){
+        if(q.getIdTopic()==3){
       %>
 
+      <tr>
+        <td><form action="/controller" method="post"><input type="hidden" name="id_user" value="<%=q.getIdUser()%>" >
+        <input type="submit" value="Открыть страницу пользователя">
+          <input type="hidden" value="get_user" name="command">
+        </form></td>
+        <td><form action="/controller" method="post">
+        <input type="hidden" name="command" value="get_answer">
+        <input type="submit" value="Открыть тему">
+        <input type="hidden" name="id_question" value="<%=q.getIdQuestion()%>">
 
-      <tr><td><a href="index.html"></a></td>
+      </form></td>
         <td><a href=""><%=q.getText()%></a></td>
         <td><%=q.getDateOfCreate()%></td>
         <td><%=q.getSumOfanswers()%></td></tr>
       <%}%>
-    </table>
-
-
-    <h2>Книги</h2>
-
-    <table class="tftable" >
-      <tr><th>Автор</th>
-        <th>Вопрос</th>
-        <th>Дата добавления</th>
-        <th>Количество просмотров</th>
-        <th>Количество ответов</th>
-      </tr>
-      <%for(Question q:booksQuestions){
-      %>
-      <tr><td><a href="index.html"></a></td><td><a href=""><%=q.getText()%></a></td>
-        <td><%=q.getDateOfCreate()%></td>
-        <td><%=q.getSumOfanswers()%></td></tr>
       <%}%>
     </table>
-
-
-    <h2>Путешествия</h2>
-
-    <table class="tftable" >
-      <tr><th>Автор</th>
-        <th>Вопрос</th>
-        <th>Дата добавления</th>
-        <th>Количество просмотров</th>
-        <th>Количество ответов</th></tr>
-      <%for(Question q:travelsQuestions){
-      %>
-
-
-      <tr><td><a href="index.html"></a></td>
-        <td><a href=""><%=q.getText()%></a></td>
-        <td><%=q.getDateOfCreate()%></td>
-        <td><%=q.getSumOfanswers()%></td></tr>
-      <%}%>
-    </table>
-
-
-
-    <h2>Компьютеры</h2>
-
-    <table class="tftable" >
-      <tr><th>Автор</th>
-        <th>Вопрос</th>
-        <th>Дата добавления</th>
-        <th>Количество просмотров</th>
-        <th>Количество ответов</th>
-      </tr>
-      <%for(Question q:computersQuestions){
-      %>
-
-
-      <tr><td><a href="index.html"></a></td>
-        <td><a href=""><%=q.getText()%></a></td>
-        <td><%=q.getDateOfCreate()%></td>
-        <td><%=q.getSumOfanswers()%></td></tr>
-      <%}%>
-    </table>
-
-
-
-
 
   </article>
 
@@ -218,16 +175,11 @@
 
     <h3>ТОП-10 по рейтингу посетителей форума</h3>
 
-    <ol class="rounded">
-      <%for(User user:userList){%>
-      <li><a href="#"><%=user.getName()%>    <%=user.getNumberOfRatings()%></a></li>
-      <%}%>
+    <form action="/controller" method="post">
+      <input type="hidden" name="command" value="get_ratings">
+      <input type="submit" class="knopka" value="Открыть рейтинг популярных">
 
-
-    </ol>
-
-
-
+    </form>
 
     <h3>Самые обсуждаемые темы форума</h3>
 
@@ -237,10 +189,6 @@
       <%for(int i=0;i<10;i++){
         Question question=questionList.get(i);
       %>
-
-
-
-
       <tr><th>Тема обсуждения</th>
         <th>Количество комментариев</th>
 
@@ -260,12 +208,6 @@
     </table>
 
 
-
-
-
-
-
-
     <button class="knopka" type="button">Показатель онлайн пользователей на форуме</button>
   </aside>
 </div>
@@ -275,11 +217,7 @@
 
 <footer>
   <div class="foot">
-
-
     <h6> <a href="reviews/addReview.jsp">Оставить отзыв</a></h6>
-
-
   </div>
 
 </footer>

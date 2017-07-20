@@ -31,7 +31,7 @@ public class DBConnectionPool {
 
 
 
-    public  Connection getConnection() {
+    public synchronized Connection getConnection() {
         Connection conn = null;
         try {
 
@@ -47,12 +47,13 @@ public class DBConnectionPool {
 
 
 
-        if (conn != null) {
+
             try {
                 pool.put(conn);
 
+
             } catch (InterruptedException e) {
-e.printStackTrace();
+                e.printStackTrace();
             }
             try{statement.close();}
             catch(SQLException e){
@@ -60,7 +61,7 @@ e.printStackTrace();
             }
 
 
-        }
+
     }
 
     public void closeConnection(Connection conn,Statement statement,ResultSet resultSet) {

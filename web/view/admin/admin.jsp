@@ -1,12 +1,7 @@
 <%@ page import="com.epam.likeit.bean.User" %>
 <%@ page import="java.util.List" %>
 
-  Created by IntelliJ IDEA.
-  User: mts7072572
-  Date: 27.05.2017
-  Time: 22:13
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,8 +11,8 @@
 <body>
 
 <h3>Добрый день,Администратор!</h3>
-<form action="operationsWithQuestions.jsp">
-
+<form action="/controller" method="post">
+    <input type="hidden" name="command" value="get_all_questions">
     <input type="submit" value="Операции с темами форума">
 </form>
 
@@ -29,8 +24,8 @@
 </form>
 
 <hr>
-<form action="operationsWithUser.jsp">
-
+<form action="/controller" method="post">
+    <input type="hidden" name="command" value="get_all_users">
     <input type="submit" value="Операции с пользователями форума">
 </form>
 

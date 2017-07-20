@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Created by mts7072572 on 03.06.2017.
  */
@@ -33,6 +34,7 @@ public class SQLAnswerDAO implements AnswerDAO {
 
         SQLAnswerDAO sqlAnswerDAO = new SQLAnswerDAO();
         Answer f=new Answer();
+
 
 
 

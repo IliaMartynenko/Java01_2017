@@ -24,9 +24,14 @@ public class GetAllQuestionsCommand implements Command {
         UserService userService=serviceFactory.getUserService();
         try {
             List<Question> questionsList = reviewService.getQuestionOrderByDate();
+            List<Question> allowedQuestions = reviewService.getQuestionIsAllowed("yes");
+            List<Question> notAllowed = reviewService.getQuestionIsAllowed("no");
+            request.getSession().setAttribute("allowed_questions",allowedQuestions);
+            request.getSession().setAttribute("not_allowed_questions",notAllowed);
 
             request.getSession().setAttribute("questions",questionsList);
-            resp="view/admin/operationsWithReviews.jsp";
+
+            resp="view/admin/operationsWithQuestions.jsp";
         }
 
         catch(ServiceException e){

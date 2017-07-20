@@ -1,8 +1,10 @@
 package com.epam.likeit.controller.impl;
 
 import com.epam.likeit.bean.Review;
+import com.epam.likeit.bean.User;
 import com.epam.likeit.controller.Command;
 import com.epam.likeit.service.ReviewService;
+import com.epam.likeit.service.UserService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
 
@@ -19,10 +21,16 @@ public class DeleteReviewCommand implements Command {
         String resp=null;
         ServiceFactory serviceFactory= ServiceFactory.getInstance();
         ReviewService reviewService=serviceFactory.getReviewService();
+        UserService userService=serviceFactory.getUserService();
         try{
             reviewService.deleteReview(Integer.parseInt(request.getParameter("id_review")));
           List<Review> reviewList= reviewService.getAllReviews();
+          List<User> userList=userService.getAllUsers();
           request.getSession().setAttribute("reviews",reviewList);
+          request.getSession().setAttribute("users",userList);
+
+
+
             resp="view/admin/operationsWithReviews.jsp";
 
         }

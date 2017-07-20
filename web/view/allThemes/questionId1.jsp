@@ -4,41 +4,36 @@
 <%@ page import="com.epam.likeit.bean.User" %>
 
 <%@ page import="com.epam.likeit.bean.Answer" %>
-<%@ page import="com.epam.likeit.service.impl.QuestionServiceImpl" %>
-<%@ page import="com.epam.likeit.service.impl.AnswerServiceImpl" %>
-<%@ page import="com.epam.likeit.service.AnswerService" %>
-<%@ page import="com.epam.likeit.service.QuestionService" %>
-<%@ page import="com.epam.likeit.service.impl.UserServiceImpl" %>
-<%@ page import="com.epam.likeit.service.UserService" %>
+<%@ page import="java.util.Map" %>
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Посоветуйте хороших книг в жанре фантастика</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../users/style.css">
 </head>
 <body>
 
-<% QuestionService questionService=new QuestionServiceImpl();
-    AnswerService answerService=new AnswerServiceImpl();
+<%
 
-    List<Answer> answers=answerService.getAnswersByQuestion(1);
+    List<Answer> answers=(List)session.getAttribute("answers");
+    List<Question> questionList=(List)session.getAttribute("questions_by_topic");
+    Question question1=(Question)session.getAttribute("question");
+    Map<Integer,String> users_map=(Map)session.getAttribute("users_by_answers");
+    String name_user=(String)(session.getAttribute("user_name"));
 
-
-    UserService userService=new UserServiceImpl();
-    List<Question> questionList=questionService.getQuestionByTopicId(1);
-    Question question1=questionService.getQuestion(1);
-    User user=userService.getUser(question1.getIdUser());
+    Map<Integer,Integer> users_ratings=(Map)session.getAttribute("user_ratings");
 %>
 
 
 
 <header>
     <h5>Имя пользователя:
-        <em><%=user.getName()%></em></h5>
+        <em><%=name_user%></em></h5>
 
     <hr>
+
     <h5>Дата создания:
         <em><%=question1.getDateOfCreate()%></em>
         <hr>
@@ -55,24 +50,27 @@
         <%for(Answer answer:answers){%>
         <table class="tftable">
 
-<td> <em>Имя пользователя:</em><h3><%=userService.getUser(answer.getIdUser()).getName()%></h3>
-    <em>Количество плюсов:</em>
-    <h3><%=userService.getUser(answer.getIdUser()).getNumberOfRatings()%></h3>
+<td> <em>Имя пользователя:</em>
+    <h3><%=users_map.get(answer.getIdAnswer())%></h3>
 
-    <em>Страна проживания:</em>
-    <h3><%=userService.getUser(answer.getIdUser()).getCountry()%></h3>
-    <hr>
+    <em>Количество плюсов пользователя:</em>
+    <h3><%=users_ratings.get(answer.getIdAnswer())%></h3>
+
+
+
+
     <em>Дата ответа:</em>
     <h3><%=answer.getDateOfAnswer()%></h3>
 
-    <form action="/addPlus" method="post">
+    <form action="/controller" method="post">
         <input type="submit" value="Поставить плюс">
+        <input type="hidden" name="id_answer" value="<%=answer.getIdAnswer()%>">
         <input type="hidden" name="id_user" value="<%=answer.getIdUser()%>">
+
+        <input type="hidden" name="command" value="add_plus">
+
     </form>
    </td>
-
-
-
             <td style="font-size: 25px;width: 1150px;">
                <%=answer.getAnswerText()%>
             </td>
@@ -81,9 +79,6 @@
         <hr>
 
 <%}%>
-
-
-
     </article>
 
 
@@ -103,14 +98,14 @@
             <tr><th>Автор</th>
                 <th>Вопрос</th>
                 <th>Дата добавления</th>
-                <th>Количество просмотров</th>
+
                 <th>Количество ответов</th></tr>
 
             <tr>
                 <td><a href=""><h4>Илья</h4></a></td>
                 <td><a href=""><h4><%=question.getText()%></h4></a></td>
                 <td><%=question.getDateOfCreate()%></td>
-                <td><a href=""><h4><%=question.getSumOfViews()%></h4></a></td>
+
                 <td><a href=""><h4><%=question.getSumOfanswers()%></h4></a></td>
 
             </tr>
@@ -132,9 +127,9 @@
 
 <footer>
    <form action="/controller" method="post">
-       <textarea name="answer" rows="8" cols="70"><%= session.getAttribute("id") %></textarea>
-       <input type="hidden" name="id_user" value="12">
-       <input type="hidden" name="id_question" value="1">
+       <textarea name="answer" rows="8" cols="70"><%=session.getAttribute("user_id") %></textarea>
+       <input type="hidden" name="id_user" value="<%=session.getAttribute("user_id")%>">
+       <input type="hidden" name="id_question" value="<%=question1.getIdQuestion()%>">
        <input type="hidden" name="command"  value="add_answer">
 
        <input type="submit">

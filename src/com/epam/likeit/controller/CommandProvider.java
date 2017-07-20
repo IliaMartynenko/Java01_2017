@@ -21,6 +21,16 @@ import java.util.Map;
             repository.put(CommandEnum.DELETE_REVIEW, new DeleteReviewCommand());
             repository.put(CommandEnum.GET_ALL_REVIEWS, new GetAllReviewsCommand());
             repository.put(CommandEnum.GET_ALL_QUESTIONS, new GetAllQuestionsCommand());
+            repository.put(CommandEnum.SIGN_IN, new SignInUserCommand());
+            repository.put(CommandEnum.GET_ALL_USERS, new GetAllUsersCommand());
+            repository.put(CommandEnum.GET_ANSWER, new GetAnswerByIdCommand());
+            repository.put(CommandEnum.ALLOW_QUESTION, new AllowQuestionCommand());
+            repository.put(CommandEnum.ADD_PLUS, new AddPlusCommand());
+            repository.put(CommandEnum.GET_RATINGS, new GetRatingsCommand());
+            repository.put(CommandEnum.REGISTRATION, new  RegistrationCommand());
+            repository.put(CommandEnum.GET_USER, new GetUserCommand());
+
+
 
         }
             Command getCommand(String name){

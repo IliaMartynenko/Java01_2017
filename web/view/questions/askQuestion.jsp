@@ -27,6 +27,7 @@
         <option>Разное</option>
     </select>
 <input type="hidden" value="add_question" name="command">
+    <input type="hidden" name="id_user" value="<%=session.getAttribute("user_id")%>">
 <input type="submit">
 </form>
 

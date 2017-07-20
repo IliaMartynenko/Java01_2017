@@ -7,13 +7,7 @@
 <%@ page import="com.epam.likeit.service.impl.ReviewServiceImpl" %>
 <%@ page import="com.epam.likeit.service.UserService" %>
 <%@ page import="com.epam.likeit.service.impl.UserServiceImpl" %>
-<%@ page import="com.epam.likeit.bean.User" %><%--
-  Created by IntelliJ IDEA.
-  User: mts7072572
-  Date: 05.07.2017
-  Time: 15:24
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.epam.likeit.bean.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -39,8 +33,8 @@
 
 <h2>Таблица всех отзывов о форуме</h2>
 <%
-    List<Review> reviewList=(List)application.getAttribute("reviews");
-    List<Review> users=(List)application.getAttribute("users");
+    List<Review> reviewList=(List)session.getAttribute("reviews");
+    List<Review> users=(List)session.getAttribute("users");
     for(Review review:reviewList){
 
 %>

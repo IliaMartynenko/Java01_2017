@@ -14,7 +14,7 @@
 
 <h2>You have successfully registered on the site!</h2>
 
-<button type="button"><a href="../index.html">Back to home page!</a></button>
+<button type="button"><a href="../index.jsp">Back to home page!</a></button>
 
 
 

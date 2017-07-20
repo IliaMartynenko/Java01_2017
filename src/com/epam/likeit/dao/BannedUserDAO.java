@@ -14,6 +14,7 @@ public interface BannedUserDAO {
     void update(BannedUser answer) throws DAOException;
     void deleteBannedUser(int idAnswer) throws DAOException;
     List<BannedUser> getAll() throws DAOException;
+    BannedUser readByUserId(int id) throws DAOException;
 
 
 }

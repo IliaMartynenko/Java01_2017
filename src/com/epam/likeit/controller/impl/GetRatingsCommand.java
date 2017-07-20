@@ -1,8 +1,8 @@
 package com.epam.likeit.controller.impl;
 
-import com.epam.likeit.bean.Answer;
+import com.epam.likeit.bean.User;
 import com.epam.likeit.controller.Command;
-import com.epam.likeit.service.AnswerService;
+import com.epam.likeit.service.UserService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
 
@@ -11,27 +11,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Created by mts7072572 on 17.07.2017.
+ * Created by mts7072572 on 19.07.2017.
  */
-public class GetAnswerByID implements Command {
-
+public class GetRatingsCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String resp=null;
         ServiceFactory serviceFactory= ServiceFactory.getInstance();
-        AnswerService answerService=serviceFactory.getAnswerService();
+        UserService userService=serviceFactory.getUserService();
         try {
-
-            List<Answer> answerList = answerService.getAnswersByQuestion(Integer.parseInt(request.getParameter("id_question")));
-
-            request.getSession().setAttribute("users",answerList);
-
-            resp="view/allThemes/questionId1.jsp";
+            resp="view/users/userRatings.jsp";
+            List<User> userList = userService.getAllUsers();
+            for(User user:userList){
+                user.setPassword("");
+            }
+            request.getSession().setAttribute("users",userList);
         }
-
         catch(ServiceException e){
             e.printStackTrace();
         }
-        return resp;
+            return resp;
     }
 }

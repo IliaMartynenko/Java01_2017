@@ -27,9 +27,9 @@ public class SQLBannedUserDAO implements BannedUserDAO {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DAOException {
         SQLBannedUserDAO sqlBannedUserDAO = new SQLBannedUserDAO();
-        BannedUser f=new BannedUser();
+      System.out.print(sqlBannedUserDAO.read(16).getBanDuration());
 
 
 
@@ -74,7 +74,7 @@ public class SQLBannedUserDAO implements BannedUserDAO {
         BannedUser bannedUser=new BannedUser();
         try
         {
-            dbConnectionPool.createPool();
+
             Connection connection = dbConnectionPool.getConnection();
             PreparedStatement statement = connection.prepareStatement(FIND_BY_ID);
             statement.setInt(1,idBannedUser);
@@ -86,7 +86,7 @@ public class SQLBannedUserDAO implements BannedUserDAO {
                 bannedUser.setIdAdmin(resultSet.getInt("id_admin"));
                 bannedUser.setReasonOfBan(resultSet.getString("reason_of_ban"));
                 bannedUser.setDateOfBan(resultSet.getDate("date_of_ban"));
-                bannedUser.setBanDuration(resultSet.getInt("year_of_birth"));
+                bannedUser.setBanDuration(resultSet.getInt("ban_duration"));
 
             }
 
@@ -99,7 +99,7 @@ public class SQLBannedUserDAO implements BannedUserDAO {
 
     public void update(BannedUser bannedUser) throws DAOException {
 
-        dbConnectionPool.createPool();
+
         Connection connection = dbConnectionPool.getConnection();
         try {
 
@@ -131,7 +131,7 @@ public class SQLBannedUserDAO implements BannedUserDAO {
     public void deleteBannedUser(int idBannedUser) throws DAOException {
 
         try {
-            dbConnectionPool.createPool();
+
             Connection connection = dbConnectionPool.getConnection();
             PreparedStatement statement=connection.prepareStatement(DELETE);
             statement.setInt(1,idBannedUser);
@@ -152,7 +152,7 @@ public class SQLBannedUserDAO implements BannedUserDAO {
         List<BannedUser> bannedUsers = new ArrayList<BannedUser>();
         try {
 
-            dbConnectionPool.createPool();
+
             Connection connection = dbConnectionPool.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(FIND_ALL);
@@ -178,11 +178,14 @@ public class SQLBannedUserDAO implements BannedUserDAO {
         return bannedUsers;
     }
 
+    @Override
+
+
     public BannedUser readByUserId(int id_user) throws DAOException {
         BannedUser bannedUser=new BannedUser();
         try
         {
-            dbConnectionPool.createPool();
+
             Connection connection = dbConnectionPool.getConnection();
             PreparedStatement statement = connection.prepareStatement(FIND_BY_USER_ID);
             statement.setInt(1,id_user);
@@ -194,7 +197,7 @@ public class SQLBannedUserDAO implements BannedUserDAO {
                 bannedUser.setIdAdmin(resultSet.getInt("id_admin"));
                 bannedUser.setReasonOfBan(resultSet.getString("reason_of_ban"));
                 bannedUser.setDateOfBan(resultSet.getDate("date_of_ban"));
-                bannedUser.setBanDuration(resultSet.getInt("year_of_birth"));
+                bannedUser.setBanDuration(resultSet.getInt("ban_duration"));
 
             }
 

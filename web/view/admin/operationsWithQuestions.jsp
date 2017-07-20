@@ -4,13 +4,7 @@
 <%@ page import="com.epam.likeit.service.QuestionService" %>
 <%@ page import="com.epam.likeit.service.impl.QuestionServiceImpl" %>
 <%@ page import="com.epam.likeit.service.impl.UserServiceImpl" %>
-<%@ page import="com.epam.likeit.service.UserService" %><%--
-  Created by IntelliJ IDEA.
-  User: mts7072572
-  Date: 05.07.2017
-  Time: 15:27
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.epam.likeit.service.UserService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,6 +12,10 @@
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
+
+<form action="/controller">
+    <button type="submit"><h3>Вернуться на начальную страницу</h3></button>
+</form>
 
 
 
@@ -38,9 +36,9 @@
 </form>
 
 <%
-    List<Question> allowedquestionList=(List)application.getAttribute("allowed_questions");
-    List<Question> notAllowedList=(List)application.getAttribute("not_allowed_questions");
-
+    List<Question> allowedquestionList=(List)session.getAttribute("allowed_questions");
+    List<Question> notAllowedList=(List)session.getAttribute("not_allowed_questions");
+    application.setAttribute("allowed_questions",allowedquestionList);
 
 %>
 <form action="admin.jsp">
@@ -60,27 +58,34 @@
 
 
     <tr><th>ID вопроса</th>
-        <th>Автор</th>
         <th>Текст вопроса</th>
         <th>Дата добавления</th>
-        <th>Количество просмотров</th>
+
         <th>Количество ответов</th>
         <th>Одобрен администратором</th>
+        <th>Одобрить вопрос</th>
         <th>Удалить вопрос</th>
     </tr>
 
     <tr>
         <td><a href=""><h4><%=questions.getIdQuestion()%></h4></a></td>
-        <td><a href=""><h4>fsad</h4></a></td>
+
         <td><a href=""><h4><%=questions.getText()%></h4></a></td>
         <td><%=questions.getDateOfCreate()%></td>
-        <td><a href=""><h4><%=questions.getSumOfViews()%></h4></a></td>
+
         <td><a href=""><h4><%=questions.getSumOfanswers()%></h4></a></td>
         <td><a href=""><h4><%=questions.getAllowed()%></h4></a></td>
+        <td> <form action="/controller" method="POST">
+            <input type="hidden" name="id_question" value="<%=questions.getIdQuestion()%>">
+            <input type="hidden" name="command" value="allow_question">
+            <input type="submit" value="Одобрить вопрос"></form></td>
+
        <td> <form action="/controller" method="POST">
            <input type="hidden" name="id_question" value="<%=questions.getIdQuestion()%>">
            <input type="hidden" name="command" value="delete_question">
            <input type="submit" value="Удалить вопрос"></form></td>
+
+
     </tr>
 
 
@@ -106,23 +111,30 @@
 
 
     <tr><th>ID вопроса</th>
-        <th>Автор</th>
+
         <th>Текст вопроса</th>
         <th>Дата добавления</th>
-        <th>Количество просмотров</th>
+
         <th>Количество ответов</th>
         <th>Одобрен администратором</th>
-        <th>Удалить вопрос</th></tr>
+        <th>Удалить вопрос</th>
+
+    </tr>
 
     <tr>
         <td><a href=""><h4><%=question.getIdQuestion()%></h4></a></td>
-        <td><a href=""><h4>fsda</h4></a></td>
+
         <td><a href=""><h4><%=question.getText()%></h4></a></td>
         <td><%=question.getDateOfCreate()%></td>
-        <td><a href=""><h4><%=question.getSumOfViews()%></h4></a></td>
+
         <td><a href=""><h4><%=question.getSumOfanswers()%></h4></a></td>
         <td><a href=""><h4><%=question.getAllowed()%></h4></a></td>
-        <td> <form action=""><input type="submit" value="Удалить вопрос"></form></td>
+        <td> <form action="/controller" method="POST">
+            <input type="hidden" name="id_question" value="<%=question.getIdQuestion()%>">
+            <input type="hidden" name="command" value="delete_question">
+            <input type="submit" value="Удалить вопрос"></form></td>
+
+
     </tr>
 
 

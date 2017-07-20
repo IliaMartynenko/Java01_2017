@@ -36,21 +36,6 @@
 <hr>
 <hr>
 
-<form action="/deleteUser" method="post">
-    <h4>Удаление пользователя по его ID</h4>
-    <input name="id_delete" type="text">
-    <button type="submit">Удалить</button>
-</form>
-
-
-<hr>
-<hr>
-<hr>
-<form action="/deleteUserName" method="post">
-    <h4>Удаление пользователя по его имени</h4>
-    <input name="id_delete_name" type="text">
-    <button type="submit">Удалить</button>
-</form>
 
 <h2>Таблица всех пользователей форума</h2>
 
@@ -59,7 +44,7 @@
 
 <%
 
-    List<User> allUsers=(List)application.getAttribute("users");%>
+    List<User> allUsers=(List)session.getAttribute("users");%>
 <table class="tftable">
     <%for(User us:allUsers){
 

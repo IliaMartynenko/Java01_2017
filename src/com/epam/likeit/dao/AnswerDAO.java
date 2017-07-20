@@ -16,4 +16,5 @@ public interface AnswerDAO {
     List<Answer> getAll() throws DAOException;
     List<Answer> getAnswerByQuestion(int id) throws DAOException;
 
+
 }

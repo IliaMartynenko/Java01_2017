@@ -10,26 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by mts7072572 on 17.07.2017.
+ * Created by mts7072572 on 20.07.2017.
  */
-public class SignInUser implements Command {
+public class GetUserCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        ServiceFactory serviceFactory= ServiceFactory.getInstance();
+        ServiceFactory serviceFactory=ServiceFactory.getInstance();
         UserService userService=serviceFactory.getUserService();
+        String resp="view/users/userPage.jsp";
         try {
-        int id=userService.signIn(request.getParameter("login"), request.getParameter("password"));
-
-            if (id != 0){
-               User user= userService.getUser(id);
-               request.getSession().setAttribute("user",user);
-               return "view/signin/helloUser.jsp";
-            }
-
-
+            User user = userService.getUser(Integer.parseInt(request.getParameter("id_user")));
+            user.setPassword("");
+            request.getSession().setAttribute("user_information", user);
         }
-        catch (ServiceException e){e.printStackTrace();}
-
-        return "view/signin/signError.jsp";
+        catch (ServiceException e){
+            e.printStackTrace();
+        }
+        return resp;
     }
 }

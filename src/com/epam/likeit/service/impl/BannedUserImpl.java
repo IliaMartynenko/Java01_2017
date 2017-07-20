@@ -67,6 +67,18 @@ public class BannedUserImpl implements BannedUserService {
     }
 
     @Override
+    public BannedUser readByUserId(int id) throws ServiceException {
+
+        BannedUser bannedUser;
+        try {
+            bannedUser = bannedUserDAO.readByUserId(id);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return bannedUser;
+    }
+
+    @Override
     public boolean isBanned(int id) throws ServiceException {
 
         try {
@@ -84,4 +96,6 @@ public class BannedUserImpl implements BannedUserService {
         return false;
 
     }
+
+
 }

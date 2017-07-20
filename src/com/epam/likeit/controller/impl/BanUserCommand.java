@@ -28,7 +28,7 @@ public class BanUserCommand implements Command {
         bannedUser.setDateOfBan(new Date(System.currentTimeMillis()));
         bannedUser.setIdAdmin(1);
         bannedUserService.addBannedUser(bannedUser);
-        resp="view/admin/admin.jsp";
+        resp="view/admin/operationsWithUser.jsp";
         }
 
         catch(ServiceException e){

@@ -18,6 +18,8 @@ public final class ServiceFactory {
         private final QuestionService questionService = new QuestionServiceImpl();
         private final TopicService topicService = new TopicServiceImpl();
         private final BannedUserService bannedUserService = new BannedUserImpl();
+        private final AdminService adminService = new AdminServiceImpl();
+
 
     public BannedUserService getBannedUserService() {
         return bannedUserService;
@@ -30,6 +32,10 @@ public final class ServiceFactory {
     }
 
     public TopicService getTopicService() {return topicService; }
+
+    public AdminService getAdminService() {
+        return adminService;
+    }
 
     public UserService getUserService() {
         return userService;

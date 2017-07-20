@@ -14,11 +14,12 @@ import java.util.List;
  */
 public class AdminServiceImpl implements AdminService {
     private final DAOFactory daoObjectFactory= DAOFactory.getInstance();
-    private final AdminDAO reviewDAO=daoObjectFactory.getAdminDAO();
+    private final AdminDAO adminDAO=daoObjectFactory.getAdminDAO();
+
     @Override
     public void deleteAdmin(int id) throws ServiceException {
         try {
-            reviewDAO.deleteAdmin(id);
+            adminDAO.deleteAdmin(id);
         }
         catch(DAOException e){ throw new ServiceException(e);
         }
@@ -28,7 +29,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void addAdmin(Admin admin) throws ServiceException {
         try {
-            reviewDAO.createAdmin(admin);
+            adminDAO.createAdmin(admin);
         }
         catch(DAOException e){ throw new ServiceException(e);
         }
@@ -39,7 +40,7 @@ public class AdminServiceImpl implements AdminService {
     public Admin getAdmin(int id) throws ServiceException {
         Admin admin;
         try {
-            admin = reviewDAO.read(id);
+            admin = adminDAO.read(id);
         }
         catch(DAOException e){ throw new ServiceException(e);
         }
@@ -50,10 +51,25 @@ public class AdminServiceImpl implements AdminService {
     public List<Admin> getAllAdmin() throws ServiceException {
         List<Admin> admins;
         try {
-            admins = reviewDAO.getAll();
+            admins = adminDAO.getAll();
         }
         catch(DAOException e){ throw new ServiceException(e);
         }
         return admins;
     }
+
+    public int signIn(String login, String password) throws ServiceException {
+        try {
+            int id=adminDAO.signIn(login, password);
+            return id;
+
+        }
+
+
+        catch(DAOException e){throw new ServiceException(e);}
+
+    }
+
+
+
 }

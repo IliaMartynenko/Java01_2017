@@ -16,4 +16,5 @@ public interface BannedUserService {
     BannedUser getBannedUser(int id) throws ServiceException;
     List<BannedUser> getAll() throws ServiceException;
     boolean isBanned(int id)  throws ServiceException;
+    BannedUser readByUserId(int id) throws ServiceException;
 }

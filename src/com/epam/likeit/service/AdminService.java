@@ -13,4 +13,5 @@ public interface AdminService {
     void addAdmin(Admin Admin) throws ServiceException;
     Admin getAdmin(int id) throws ServiceException;
     List<Admin> getAllAdmin() throws ServiceException;
+    int signIn(String login,String password) throws ServiceException;
 }

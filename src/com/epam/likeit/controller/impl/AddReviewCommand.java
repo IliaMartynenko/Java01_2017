@@ -16,26 +16,30 @@ import java.sql.Date;
 public class AddReviewCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String resp=null;
-        ServiceFactory serviceFactory=ServiceFactory.getInstance();
-        ReviewService reviewService=serviceFactory.getReviewService();
-        try{
-            Review review=new Review();
-            review.setTextOfReview(request.getParameter("review"));
-            review.setDate(new Date(System.currentTimeMillis()));
-            review.setRating(Integer.parseInt(request.getParameter("rating")));
-            review.setIdUser(3);
-            reviewService.addReview(review);
+        if (request.getSession().getAttribute("user_id") == null) {
+            return "view/errors/reviewError.jsp";
+        } else {
+            String resp = null;
+            ServiceFactory serviceFactory = ServiceFactory.getInstance();
+            ReviewService reviewService = serviceFactory.getReviewService();
+
+            try {
+                Review review = new Review();
+                review.setTextOfReview(request.getParameter("review"));
+                review.setDate(new Date(System.currentTimeMillis()));
+                review.setRating(Integer.parseInt(request.getParameter("rating")));
+                review.setIdUser((int) request.getSession().getAttribute("user_id"));
 
 
-            resp="view/reviews/addReview.jsp";
+                reviewService.addReview(review);
+                resp = "view/reviews/addReview.jsp";
+
+            } catch (ServiceException e) {
+                e.printStackTrace();
+            }
+            return resp;
 
         }
-        catch(ServiceException e){
-            e.printStackTrace();
-        }
-        return resp;
-
     }
     }
 
