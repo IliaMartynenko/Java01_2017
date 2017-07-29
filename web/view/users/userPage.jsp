@@ -12,25 +12,29 @@
 </head>
 <body>
 <% User user=(User)session.getAttribute("user_information");%>
-<h1>Имя пользователя:</h1>
-<%=user.getName()%>
+<h1><%=session.getAttribute("userPage.name")%>:</h1>
+<h2><u><%=user.getName()%></u></h2>
+<hr>
+<h1><%=session.getAttribute("userPage.country")%>:</h1>
+<h2><u><%=user.getCountry()%></u></h2>
+<hr>
+<h1><%=session.getAttribute("userPage.mail")%>:</h1>
+<h2><u><%=user.getMail()%></u></h2>
+<hr>
 
-<h1>Страна проживания пользователя:</h1>
-<%=user.getCountry()%>
-<h1>Mail пользователя:</h1>
-<%=user.getMail()%>
 
-<h1>Mail пользователя:</h1>
-<%=user.getMail()%>
 
-<h1>Количество заданных вопросов пользователя:</h1>
-<%=user.getNumberOfQuestions()%>
+<h1><%=session.getAttribute("userPage.sumOfQuestions")%>:</h1>
+<h2><u><%=user.getNumberOfQuestions()%></u></h2>
+<hr>
 
-<h1>Количество оценок:</h1>
-<%=user.getNumberOfRatings()%>
+<h1><%=session.getAttribute("userPage.rating")%>:</h1>
+<h2><u><%=user.getNumberOfRatings()%></u></h2>
 
-<h1>Возраст пользователя:</h1>
-<%=user.getAge()%>
+<hr>
+<h1><%=session.getAttribute("userPage.age")%>:</h1>
+<h2><u><%=user.getAge()%></u></h2>
+<hr>
 
 
 

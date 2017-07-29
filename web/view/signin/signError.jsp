@@ -11,6 +11,7 @@
     <title>Error</title>
 </head>
 <body>
-<h3>This user does not exist<h3>
+
+<h3><%=session.getAttribute("signError.message")%></h3>
 </body>
 </html>

@@ -7,6 +7,7 @@ import com.epam.likeit.service.ReviewService;
 import com.epam.likeit.service.UserService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import java.util.List;
  * Created by mts7072572 on 14.07.2017.
  */
 public class GetAllReviewsCommand implements Command {
+    private static Logger logger = Logger.getLogger(GetAllQuestionsCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String resp=null;
@@ -37,8 +39,8 @@ public class GetAllReviewsCommand implements Command {
             resp="view/admin/operationsWithReviews.jsp";
         }
 
-        catch(ServiceException  e){
-            e.printStackTrace();
+        catch (ServiceException  e){
+            logger.error(e);
         }
 return resp;
     }

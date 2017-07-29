@@ -18,13 +18,13 @@
 <h2>По причине бана вы не можете оставлять сообщения под темами форума!</h2>
 <h3>Дата бана:
 </h3>
-<h3><%=user.getDateOfBan()%></h3>
+<h3><u><%=user.getDateOfBan()%></u></h3>
 <h3>Причина бана:
 </h3>
-<h3><%=user.getReasonOfBan()%></h3>
+<h3><u><%=user.getReasonOfBan()%></u></h3>
 <h3>Длительность бана(количество дней):
 </h3>
-<h3><%=user.getBanDuration()%></h3>
+<h3><u><%=user.getBanDuration()%></u></h3>
 
 
 

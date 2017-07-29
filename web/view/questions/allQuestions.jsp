@@ -18,7 +18,7 @@
 %>
 
     <form action="../index.jsp">
-        <button type="submit"><h3>Вернуться на начальную страницу</h3></button>
+        <button type="submit"><h3><%=session.getAttribute("answerError.back")%></h3></button>
     </form>
 <table class="tftable">
     <%for(int i=0;i<questionList.size();i++){
@@ -28,16 +28,16 @@
 
 
 
-    <tr><th>Автор</th>
-        <th>Вопрос</th>
-        <th>Дата добавления</th>
-        <th>Количество ответов</th></tr>
+    <tr>
+        <th><%=session.getAttribute("allQuestions.question")%></th>
+        <th><%=session.getAttribute("allQuestions.date")%></th>
+        <th><%=session.getAttribute("allQuestions.sumOfAnswers")%></th></tr>
 
     <tr>
-        <td><a href=""><h4>Илья</h4></a></td>
-        <td><a href=""><h4><%=question.getText()%></h4></a></td>
+
+        <td><h4><%=question.getText()%></h4></td>
         <td><%=question.getDateOfCreate()%></td>
-        <td><a href=""><h4><%=question.getSumOfanswers()%></h4></a></td>
+        <td><h4><%=question.getSumOfanswers()%></h4></td>
 
     </tr>
 

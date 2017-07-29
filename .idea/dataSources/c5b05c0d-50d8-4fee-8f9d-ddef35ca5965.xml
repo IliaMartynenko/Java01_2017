@@ -3273,36 +3273,29 @@
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="722" parent="71" name="sum_of_views">
-      <Position>6</Position>
-      <Comment>Это поле указывает количество просмотров вопроса.Если пользователь захочет найти самую просматриваемую(популярную) тему это поле поможет решить это задачу.
-Начальное(default) значение для созданного сообщения-0.</Comment>
-      <DataType>int(11)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="723" parent="71" name="date">
-      <Position>8</Position>
+    <column id="722" parent="71" name="date">
+      <Position>7</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="724" parent="71" name="allowed">
-      <Position>7</Position>
+    <column id="723" parent="71" name="allowed">
+      <Position>6</Position>
       <Comment>Данное поле показывает &quot;закрыта&quot; ли тема на форуме.То есть если пользователь,создавший данную тему,получил нужные ему ответы,он может &quot;закрыть&quot; тему.То есть комментировать данную тему будет запрещено.Такой прием почти всегда используется на различных форумах.
 Начальное значение для созданного сообщения будет -NO.Это означает,что тема открыта для комментариев и обсуждения.</Comment>
-      <DataType>varchar(45)|0</DataType>
+      <DataType>varchar(10)|0</DataType>
       <DefaultExpression>&apos;NO&apos;</DefaultExpression>
     </column>
-    <index id="725" parent="71" name="id_topic_idx">
+    <index id="724" parent="71" name="id_topic_idx">
       <ColNames>id_topic</ColNames>
     </index>
-    <index id="726" parent="71" name="_idx">
+    <index id="725" parent="71" name="_idx">
       <ColNames>id_user</ColNames>
     </index>
-    <key id="727" parent="71" name="PRIMARY">
+    <key id="726" parent="71" name="PRIMARY">
       <ColNames>id_question</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="728" parent="71">
+    <foreign-key id="727" parent="71">
       <ColNames>id_user</ColNames>
       <RefSchemaName>likeit</RefSchemaName>
       <RefTableName>users</RefTableName>
@@ -3310,7 +3303,7 @@
       <OnUpdate>no-action</OnUpdate>
       <OnDelete>no-action</OnDelete>
     </foreign-key>
-    <foreign-key id="729" parent="71" name="id_topic">
+    <foreign-key id="728" parent="71" name="id_topic">
       <ColNames>id_topic</ColNames>
       <RefSchemaName>likeit</RefSchemaName>
       <RefTableName>topics</RefTableName>
@@ -3318,41 +3311,41 @@
       <OnUpdate>no-action</OnUpdate>
       <OnDelete>no-action</OnDelete>
     </foreign-key>
-    <column id="730" parent="72" name="id_reviews">
+    <column id="729" parent="72" name="id_reviews">
       <Position>1</Position>
       <Comment>Указывает id отзыва.</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="731" parent="72" name="id_user">
+    <column id="730" parent="72" name="id_user">
       <Position>2</Position>
       <Comment>Указывает на id пользователя который оставил отзыв.</Comment>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="732" parent="72" name="date">
+    <column id="731" parent="72" name="date">
       <Position>3</Position>
       <Comment>Указывает дату отзыва.</Comment>
       <DataType>date|0</DataType>
     </column>
-    <column id="733" parent="72" name="text_of_review">
+    <column id="732" parent="72" name="text_of_review">
       <Position>4</Position>
       <Comment>Указывает текст отзыва.</Comment>
       <DataType>varchar(300)|0</DataType>
     </column>
-    <column id="734" parent="72" name="rating">
+    <column id="733" parent="72" name="rating">
       <Position>5</Position>
       <Comment>Указывает оценку отзыва,от 1 до 10.</Comment>
       <DataType>double|0</DataType>
     </column>
-    <index id="735" parent="72" name="id_user_idx">
+    <index id="734" parent="72" name="id_user_idx">
       <ColNames>id_user</ColNames>
     </index>
-    <key id="736" parent="72" name="PRIMARY">
+    <key id="735" parent="72" name="PRIMARY">
       <ColNames>id_reviews</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="737" parent="72" name="id_rew_user">
+    <foreign-key id="736" parent="72" name="id_rew_user">
       <ColNames>id_user</ColNames>
       <RefSchemaName>likeit</RefSchemaName>
       <RefTableName>users</RefTableName>
@@ -3360,89 +3353,89 @@
       <OnUpdate>no-action</OnUpdate>
       <OnDelete>no-action</OnDelete>
     </foreign-key>
-    <column id="738" parent="73" name="id_topic">
+    <column id="737" parent="73" name="id_topic">
       <Position>1</Position>
       <Comment>Это поле задает Primary Key для таблицы questions,указывает уникальый id темы.Ключ в данном случае является синтетическим(суррогатным).Считаю что для рещения моей задачи оптимально было использовать именно его.В моей таблице ключ является Auto Incremental.При добавление нового пользователя не придется заполнять это поле,оно заполнится автоматически уникальным значением.</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="739" parent="73" name="topic_name">
+    <column id="738" parent="73" name="topic_name">
       <Position>2</Position>
       <Comment>Название темы.</Comment>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="740" parent="73" name="PRIMARY">
+    <key id="739" parent="73" name="PRIMARY">
       <ColNames>id_topic</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="741" parent="74" name="id_user">
+    <column id="740" parent="74" name="id_user">
       <Position>1</Position>
       <Comment>Это поле задает Primary Key для таблицы users,указывает уникальный id пользователя.Ключ в данном случае является синтетическим(суррогатным).В моей таблице ключ является Auto Incremental.При добавление нового пользователя не придется заполнять это поле,оно заполнится автоматически уникальным значением.</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="742" parent="74" name="mail">
+    <column id="741" parent="74" name="mail">
       <Position>2</Position>
       <DataType>varchar(80)|0</DataType>
     </column>
-    <column id="743" parent="74" name="login">
+    <column id="742" parent="74" name="login">
       <Position>3</Position>
       <Comment>Это поле указывает логин пользователя для входа на форум.Это поле в моей таблице является уникальным,так как логины у всех пользователей должны различаться.Поле является Not Null,так как каждый пользователь будет иметь свой логин.</Comment>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="744" parent="74" name="password">
+    <column id="743" parent="74" name="password">
       <Position>4</Position>
       <Comment>Это поле указывает пароль пользователя для входа на форум.Поле является Not Null,так как каждый пользователь будет иметь свой пароль.</Comment>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="745" parent="74" name="name">
+    <column id="744" parent="74" name="name">
       <Position>5</Position>
       <Comment>Это поле указывает на имя каждого пользователя на форуме.Поле является Not Null,так как у каждого пользователя должно быть имя на форуме.Так же поле является уникальным,так как имена на форуме должны отличаться для удобства.</Comment>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="746" parent="74" name="country">
+    <column id="745" parent="74" name="country">
       <Position>7</Position>
       <Comment>Это поле указывает страну,где проживает пользователь,это поле можно оставить пустым и его дефолтное значение будет &quot;-&quot;.</Comment>
       <DataType>varchar(45)|0</DataType>
       <DefaultExpression>&apos;-&apos;</DefaultExpression>
     </column>
-    <column id="747" parent="74" name="number_of_questions">
+    <column id="746" parent="74" name="number_of_questions">
       <Position>8</Position>
       <Comment>Это поле указывает количество вопросов,которое задал данный пользователь на форуме.</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="748" parent="74" name="number_of_ratings">
+    <column id="747" parent="74" name="number_of_ratings">
       <Position>9</Position>
       <Comment>Это поле указывает количество оценок,которое получил данный пользователь.Например пользователь &quot;Олег&quot; получил 3 оценки-&quot;10&quot;,&quot;9&quot;,&quot;8&quot;.Из этого следует,что сейчас его рейтинг составляет 27/3=9.Данное поле используется для подсчета рейтинга пользователя.</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="749" parent="74" name="age">
+    <column id="748" parent="74" name="age">
       <Position>6</Position>
       <Comment>Это поле указывает на год рождения.Я сделал его Not Null,для того чтобы каждый пользователь заполнил это поле.Я сделал это,чтобы доступ на форум можно было ограничить по возрасту,например разрешать регистрацию на форуме,только людям старше 16.</Comment>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="750" parent="74" name="login_UNIQUE">
+    <index id="749" parent="74" name="login_UNIQUE">
       <ColNames>login</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="751" parent="74" name="name_UNIQUE">
+    <index id="750" parent="74" name="name_UNIQUE">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="752" parent="74" name="PRIMARY">
+    <key id="751" parent="74" name="PRIMARY">
       <ColNames>id_user</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="753" parent="74" name="login_UNIQUE">
+    <key id="752" parent="74" name="login_UNIQUE">
       <ColNames>login</ColNames>
       <UnderlyingIndexName>login_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="754" parent="74" name="name_UNIQUE">
+    <key id="753" parent="74" name="name_UNIQUE">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>name_UNIQUE</UnderlyingIndexName>
     </key>

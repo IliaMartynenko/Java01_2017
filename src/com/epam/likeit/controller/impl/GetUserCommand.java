@@ -5,6 +5,7 @@ import com.epam.likeit.controller.Command;
 import com.epam.likeit.service.UserService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by mts7072572 on 20.07.2017.
  */
 public class GetUserCommand implements Command {
+    private static Logger logger = Logger.getLogger(GetUserCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         ServiceFactory serviceFactory=ServiceFactory.getInstance();
@@ -23,8 +25,8 @@ public class GetUserCommand implements Command {
             user.setPassword("");
             request.getSession().setAttribute("user_information", user);
         }
-        catch (ServiceException e){
-            e.printStackTrace();
+        catch (ServiceException  e){
+            logger.error(e);
         }
         return resp;
     }

@@ -5,6 +5,7 @@ import com.epam.likeit.controller.Command;
 import com.epam.likeit.service.QuestionService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by mts7072572 on 18.07.2017.
  */
 public class AllowQuestionCommand implements Command {
+    private static Logger logger = Logger.getLogger(AllowQuestionCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         ServiceFactory serviceFactory= ServiceFactory.getInstance();
@@ -26,8 +28,8 @@ public class AllowQuestionCommand implements Command {
             request.getSession().setAttribute("not_allowed_questions",questionService.getQuestionIsAllowed("no"));
 
         }
-        catch(ServiceException e){
-            e.printStackTrace();
+        catch (ServiceException  e){
+            logger.error(e);
         }
         return "view/admin/operationsWithQuestions.jsp";
     }

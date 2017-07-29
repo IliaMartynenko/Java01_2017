@@ -8,6 +8,7 @@ import com.epam.likeit.service.QuestionService;
 import com.epam.likeit.service.TopicService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,9 +18,10 @@ import java.sql.Date;
  * Created by mts7072572 on 13.07.2017.
  */
 public class AddQuestionCommand implements Command {
+    private static Logger logger = Logger.getLogger(AddQuestionCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        if (request.getSession().getAttribute("id_user") == null) {
+        if (request.getSession().getAttribute("user_id") == null) {
             return "view/errors/questionError.jsp";
         }
 
@@ -49,9 +51,8 @@ public class AddQuestionCommand implements Command {
                     questionService.addQuestion(question);
                     resp = "view/questions/questionSucess.jsp";
                 }
-            } catch (ServiceException e) {
-
-                e.printStackTrace();
+            } catch (ServiceException  e){
+                logger.error(e);
             }
 
 

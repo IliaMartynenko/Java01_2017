@@ -5,6 +5,7 @@ import com.epam.likeit.controller.Command;
 import com.epam.likeit.service.ReviewService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import java.sql.Date;
  * Created by mts7072572 on 14.07.2017.
  */
 public class AddReviewCommand implements Command {
+    private static Logger logger = Logger.getLogger(AddReviewCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         if (request.getSession().getAttribute("user_id") == null) {
@@ -34,8 +36,8 @@ public class AddReviewCommand implements Command {
                 reviewService.addReview(review);
                 resp = "view/reviews/addReview.jsp";
 
-            } catch (ServiceException e) {
-                e.printStackTrace();
+            } catch (ServiceException  e){
+                logger.error(e);
             }
             return resp;
 

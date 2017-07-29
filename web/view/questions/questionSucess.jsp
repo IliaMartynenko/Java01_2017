@@ -12,10 +12,10 @@
 </head>
 <body>
 <form action="../index.jsp">
-    <button type="submit"><h3>Вернуться на начальную страницу</h3></button>
+    <button type="submit"><h3><%=session.getAttribute("answerError.back")%></h3></button>
 </form>
 
-<h2>Ваш вопрос будет рассмотрен администратором!</h2>
+<h2><%=session.getAttribute("questionSucess.message")%></h2>
 
 </body>
 </html>

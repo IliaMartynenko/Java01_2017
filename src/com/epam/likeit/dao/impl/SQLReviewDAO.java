@@ -4,6 +4,7 @@ import com.epam.likeit.bean.Review;
 import com.epam.likeit.dao.exception.DAOException;
 import com.epam.likeit.dao.pool.DBConnectionPool;
 import com.epam.likeit.dao.ReviewDAO;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
  * Created by mts7072572 on 03.06.2017.
  */
 public class SQLReviewDAO implements ReviewDAO {
+    private static Logger logger = Logger.getLogger(SQLReviewDAO.class.getName());
     private final DBConnectionPool dbConnectionPool = new DBConnectionPool();
     {dbConnectionPool.createPool();}
     private static final String DELETE = "DELETE FROM reviews WHERE id_reviews=?";
@@ -59,7 +61,7 @@ public class SQLReviewDAO implements ReviewDAO {
 
             dbConnectionPool.closeConnection(connection,statement);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
 
 
@@ -85,7 +87,9 @@ public class SQLReviewDAO implements ReviewDAO {
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
         }
-        catch(SQLException e){}
+        catch (SQLException e) {
+            logger.error(e);
+        }
         return review;
 
     }
@@ -109,8 +113,7 @@ public class SQLReviewDAO implements ReviewDAO {
 
             dbConnectionPool.closeConnection(connection,statement);
         } catch (SQLException e) {
-            //e.printStackTrace();
-
+            logger.error(e);
         }
 
 
@@ -134,8 +137,8 @@ public class SQLReviewDAO implements ReviewDAO {
             dbConnectionPool.closeConnection(connection,statement);
         }
 
-        catch(Exception e  ){
-            e.printStackTrace();
+        catch (SQLException e) {
+            logger.error(e);
         }
     }
 
@@ -164,8 +167,8 @@ public class SQLReviewDAO implements ReviewDAO {
 
             dbConnectionPool.closeConnection(connection,statement);
 
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+            logger.error(e);
         }
 
         return reviews;

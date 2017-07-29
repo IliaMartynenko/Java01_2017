@@ -4,6 +4,7 @@ import com.epam.likeit.bean.Answer;
 import com.epam.likeit.dao.exception.DAOException;
 import com.epam.likeit.dao.pool.DBConnectionPool;
 import com.epam.likeit.dao.AnswerDAO;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by mts7072572 on 03.06.2017.
  */
 public class SQLAnswerDAO implements AnswerDAO {
+    private static Logger logger = Logger.getLogger(SQLAnswerDAO.class.getName());
     private final DBConnectionPool dbConnectionPool = new DBConnectionPool();
     {dbConnectionPool.createPool();}
     private static final String DELETE = "DELETE FROM answers WHERE id_answer=?";
@@ -66,8 +68,9 @@ public class SQLAnswerDAO implements AnswerDAO {
             statement.executeUpdate();
 
             dbConnectionPool.closeConnection(connection,statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }  catch (SQLException e) {
+
+            logger.error(e);
         }
 
 
@@ -95,7 +98,10 @@ public class SQLAnswerDAO implements AnswerDAO {
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
         }
-        catch(SQLException e){}
+        catch (SQLException e) {
+
+            logger.error(e);
+        }
         return answer;
 
     }
@@ -121,9 +127,9 @@ public class SQLAnswerDAO implements AnswerDAO {
 
 
             dbConnectionPool.closeConnection(connection,statement);
-        } catch (SQLException e) {
-            //e.printStackTrace();
+        }  catch (SQLException e) {
 
+            logger.error(e);
         }
 
 
@@ -147,8 +153,9 @@ public class SQLAnswerDAO implements AnswerDAO {
             dbConnectionPool.closeConnection(connection,statement);
         }
 
-        catch(Exception e  ){
-            e.printStackTrace();
+        catch (SQLException e) {
+
+            logger.error(e);
         }
     }
 
@@ -178,8 +185,9 @@ public class SQLAnswerDAO implements AnswerDAO {
 
             dbConnectionPool.closeConnection(connection,statement);
 
-        } catch (Exception e) {
+        }  catch (SQLException e) {
 
+            logger.error(e);
         }
 
         return Answers;
@@ -214,7 +222,10 @@ public class SQLAnswerDAO implements AnswerDAO {
 
             dbConnectionPool.closeConnection(connection,statement);
         }
-        catch(SQLException e){}
+        catch (SQLException e) {
+
+            logger.error(e);
+        }
         return answers;
 
     }

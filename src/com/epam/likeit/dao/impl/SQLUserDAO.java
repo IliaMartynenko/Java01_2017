@@ -5,6 +5,7 @@ import com.epam.likeit.dao.exception.DAOException;
 import com.epam.likeit.dao.pool.ConnectionPoolException;
 import com.epam.likeit.dao.pool.DBConnectionPool;
 import com.epam.likeit.dao.UserDAO;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by mts7072572 on 28.05.2017.
  */
 public class SQLUserDAO implements UserDAO {
+    private static Logger logger = Logger.getLogger(SQLUserDAO.class.getName());
     private final DBConnectionPool dbConnectionPool = new DBConnectionPool();
     {
             dbConnectionPool.createPool();
@@ -77,7 +79,7 @@ public class SQLUserDAO implements UserDAO {
 
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
 
 
@@ -108,9 +110,9 @@ public class SQLUserDAO implements UserDAO {
             dbConnectionPool.closeConnection(connection,statement,resultSet);
 
         }
-    catch(SQLException e){
-e.printStackTrace();
-    }
+        catch (SQLException e) {
+            logger.error(e);
+        }
 
 return user;
 
@@ -142,8 +144,7 @@ return user;
 
             dbConnectionPool.closeConnection(connection,ps);
         } catch (SQLException e) {
-            //e.printStackTrace();
-
+            logger.error(e);
         }
 
 
@@ -170,9 +171,9 @@ return user;
         }
 
 
-            catch(SQLException e  ){
-            e.printStackTrace();
-            }
+        catch (SQLException e) {
+            logger.error(e);
+        }
     }
 
 
@@ -208,7 +209,7 @@ return user;
 
 
         } catch (SQLException e) {
-
+            logger.error(e);
         }
 
         return users;
@@ -231,8 +232,8 @@ return user;
         }
 
 
-        catch(SQLException e){
-            e.printStackTrace();
+        catch (SQLException e) {
+            logger.error(e);
         }
     }
 
@@ -263,8 +264,8 @@ return user;
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
         }
-        catch(SQLException e){
-
+        catch (SQLException e) {
+            logger.error(e);
         }
 
         return user.getId();
@@ -300,8 +301,8 @@ return user;
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
         }
-        catch(SQLException e){
-
+        catch (SQLException e) {
+            logger.error(e);
         }
 
         return user;

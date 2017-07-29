@@ -6,6 +6,7 @@ import com.epam.likeit.controller.contextlistener.ServletContextExample;
 import com.epam.likeit.service.UserService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -17,6 +18,7 @@ import java.util.HashMap;
  * Created by mts7072572 on 18.07.2017.
  */
 public class AddPlusCommand implements Command {
+    private static Logger logger = Logger.getLogger(AddPlusCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         ServiceFactory serviceFactory= ServiceFactory.getInstance();
@@ -35,7 +37,9 @@ public class AddPlusCommand implements Command {
 
 
         }
-        catch(ServiceException e){}
+        catch (ServiceException  e){
+            logger.error(e);
+        }
 
         return "view/allThemes/questionId1.jsp";
     }

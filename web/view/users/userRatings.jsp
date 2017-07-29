@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Рейтинг пользователей</title>
+    <title>User's rating</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,8 +19,8 @@
 <ol class="rounded">
     <%for(User user:userList){%>
     <li><h1><%=user.getName()%></h1>
-        <h3>Количество плюсов:</h3> <h2><u><%=user.getNumberOfRatings()%></u></h2>
-        <h3>Страна проживания:</h3>   <h2><u><%=user.getCountry()%></u></h2>
+        <h3><%=session.getAttribute("userRatings.sumOfRatings")%>:</h3> <h2><u><%=user.getNumberOfRatings()%></u></h2>
+        <h3><%=session.getAttribute("userRatings.country")%>:</h3>   <h2><u><%=user.getCountry()%></u></h2>
     </li>
     <%}%>
 

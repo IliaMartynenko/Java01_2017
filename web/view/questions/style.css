@@ -2,17 +2,7 @@
     margin-left: 80%;
     margin-top: -8%;
 }
-h1{
-    font-family: Taco;
-    font-size: 300%;
-    margin-top: 2%;
-}
-h2{
-    font-family: Mir;
-    font-size: 150%;
-    margin-top: -0.5%;
 
-}
 
 .search{
     margin-top:80%;
@@ -36,7 +26,6 @@ h2{
 
 
 
-
 .rounded {
     counter-reset: li;
     list-style: none;
@@ -44,7 +33,7 @@ h2{
     padding: 0;
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
-.rounded a {
+.rounded li {
     position: relative;
     display: block;
     padding: .4em .4em .4em 2em;
@@ -55,9 +44,9 @@ h2{
     border-radius: .3em;
     transition: .3s ease-out;
 }
-.rounded a:hover {background: #E9E4E0;}
-.rounded a:hover:before {transform: rotate(360deg);}
-.rounded a:before {
+.rounded li:hover {background: #E9E4E0;}
+.rounded li:hover:before {transform: rotate(360deg);}
+.rounded li:before {
     content: counter(li);
     counter-increment: li;
     position: absolute;
@@ -74,7 +63,6 @@ h2{
     border-radius: 2em;
     transition: all .3s ease-out;
 }
-
 
 
 input{
@@ -107,7 +95,7 @@ b{
 }
 
 .headimg{
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
     margin-left: 40%;
     margin-top: -14%;

@@ -3,12 +3,6 @@
 <%@ page import="com.epam.likeit.service.impl.ReviewServiceImpl" %>
 <%@ page import="com.epam.likeit.service.ReviewService" %>
 
-Created by IntelliJ IDEA.
-  User: mts7072572
-  Date: 24.06.2017
-  Time: 21:14
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -17,23 +11,23 @@ Created by IntelliJ IDEA.
 </head>
 <body>
 <form action="../index.jsp">
-    <button type="submit"><h3>Вернуться на начальную страницу</h3></button>
+    <button type="submit"><h3><%=session.getAttribute("answerError.back")%></h3></button>
 </form>
 
 <hr>
 
 <form action="/controller" method="post" >
-    <h3 class="actual">Напишите ваш отзыв</h3>
+    <h3 class="actual"><%=session.getAttribute("addReview.writeReview")%></h3>
 
-   <textarea name="review" rows="8" cols="70">Тексты отзыва</textarea>
-    <h3>Выберите свою оценку от 1 до 10.</h3>
+   <textarea name="review" rows="8" cols="70"><%=session.getAttribute("addReview.text")%></textarea>
+    <h3><%=session.getAttribute("addReview.chooseRating")%></h3>
     <input name="rating" type="number" min="1" max="10">
     <input type="hidden" name="command" value="add_review">
-    <input class="knopka" type="submit">
+    <input class="knopka" type="submit" value="<%=session.getAttribute("addReview.send")%>">
 </form>
 <hr>
 
-<h3 class="actual">Список отзывов:</h3>
+<h3 class="actual"><%=session.getAttribute("addReview.list")%>:</h3>
 
 <%
     ReviewService reviewService=new ReviewServiceImpl();
@@ -41,8 +35,9 @@ Created by IntelliJ IDEA.
 %>
 <ul>
         <%for(int i=0;i<reviewsList.size();i++){%>
-    <li><%=reviewsList.get(i).getTextOfReview()%> <h4>Дата отзыва:<%=reviewsList.get(i).getDate()%>   </h4>    <h4 class="mark">Оценка:<%=reviewsList.get(i).getRating()%>  </h4><hr>  </li>
-        <%}%>
+            <li><%=reviewsList.get(i).getTextOfReview()%> <h4><%=session.getAttribute("addReview.date")%>:<%=reviewsList.get(i).getDate()%>   </h4>
+                <h4 class="mark"><%=session.getAttribute("addReview.rating")%>    <%=reviewsList.get(i).getRating()%>  </h4><hr>  </li>
+                <%}%>
 
 
 </body>

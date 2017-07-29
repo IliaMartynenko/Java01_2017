@@ -10,6 +10,7 @@ import com.epam.likeit.service.UserService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
 import com.epam.likeit.service.impl.QuestionServiceImpl;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import java.util.Map;
  * Created by mts7072572 on 17.07.2017.
  */
 public class GetAnswerByIdCommand implements Command {
+    private static Logger logger = Logger.getLogger(GetAnswerByIdCommand.class.getName());
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -62,8 +64,8 @@ public class GetAnswerByIdCommand implements Command {
             resp="view/allThemes/questionId1.jsp";
         }
 
-        catch(ServiceException e){
-            e.printStackTrace();
+        catch (ServiceException  e){
+            logger.error(e);
         }
         return resp;
     }

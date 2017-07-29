@@ -1,9 +1,11 @@
 package com.epam.likeit.dao.impl;
 
 import com.epam.likeit.bean.Admin;
+import com.epam.likeit.controller.factory.CommandFactory;
 import com.epam.likeit.dao.exception.DAOException;
 import com.epam.likeit.dao.pool.DBConnectionPool;
 import com.epam.likeit.dao.AdminDAO;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import java.util.List;
  * Created by mts7072572 on 01.06.2017.
  */
 public class SQLAdminDAO implements AdminDAO {
+    private static Logger logger = Logger.getLogger(SQLAdminDAO.class.getName());
     private final DBConnectionPool dbConnectionPool = new DBConnectionPool();
     {dbConnectionPool.createPool();}
 
@@ -30,11 +33,7 @@ public class SQLAdminDAO implements AdminDAO {
 
 
 
-    public static void main(String[] args) {
 
-
-
-    }
 
 
 
@@ -64,7 +63,8 @@ public class SQLAdminDAO implements AdminDAO {
             dbConnectionPool.closeConnection(connection,statement);
             
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            logger.error(e);
         }
 
 
@@ -93,7 +93,10 @@ public class SQLAdminDAO implements AdminDAO {
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
         }
-        catch(SQLException e){}
+        catch (SQLException e) {
+
+            logger.error(e);
+        }
         return admin;
 
     }
@@ -123,8 +126,8 @@ public class SQLAdminDAO implements AdminDAO {
             dbConnectionPool.closeConnection(connection,ps);
 
         } catch (SQLException e) {
-            //e.printStackTrace();
 
+            logger.error(e);
         }
 
     }
@@ -146,8 +149,9 @@ public class SQLAdminDAO implements AdminDAO {
             dbConnectionPool.closeConnection(connection,statement);
         }
 
-        catch(Exception e  ){
-            e.printStackTrace();
+        catch (SQLException e) {
+
+            logger.error(e);
         }
     }
 
@@ -177,8 +181,9 @@ public class SQLAdminDAO implements AdminDAO {
             }
             dbConnectionPool.closeConnection(connection,statement,resultSet);
 
-        } catch (Exception e) {
-e.printStackTrace();
+        }  catch (SQLException e) {
+
+            logger.error(e);
         }
 
         return admins;
@@ -212,8 +217,9 @@ e.printStackTrace();
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
         }
-        catch(SQLException e){
+        catch (SQLException e) {
 
+            logger.error(e);
         }
 
         return admin;

@@ -6,6 +6,7 @@ import com.epam.likeit.service.BannedUserService;
 import com.epam.likeit.service.QuestionService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import java.sql.Date;
  * Created by mts7072572 on 13.07.2017.
  */
 public class BanUserCommand implements Command {
+    private static Logger logger = Logger.getLogger(BanUserCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String resp=null;
@@ -31,9 +33,9 @@ public class BanUserCommand implements Command {
         resp="view/admin/operationsWithUser.jsp";
         }
 
-        catch(ServiceException e){
-            e.printStackTrace();
-            }
+        catch (ServiceException  e){
+            logger.error(e);
+        }
 
 
 

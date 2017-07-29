@@ -10,6 +10,7 @@ import com.epam.likeit.service.QuestionService;
 import com.epam.likeit.service.UserService;
 import com.epam.likeit.service.exception.ServiceException;
 import com.epam.likeit.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import java.util.Map;
  * Created by mts7072572 on 14.07.2017.
  */
 public class AddAnswerCommand implements Command {
+    private static Logger logger = Logger.getLogger(AddAnswerCommand.class.getName());
     ServiceFactory serviceFactory=ServiceFactory.getInstance();
     AnswerService answerService=serviceFactory.getAnswerService();
     BannedUserService bannedUserService = serviceFactory.getBannedUserService();
@@ -29,7 +31,7 @@ public class AddAnswerCommand implements Command {
     QuestionService questionService=serviceFactory.getQuestionService();
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        if (request.getSession().getAttribute("id_user") == null) {
+        if (request.getSession().getAttribute("user_id") == null) {
             return "view/errors/answerError.jsp";
         }
         else {
@@ -75,9 +77,10 @@ public class AddAnswerCommand implements Command {
 
                 }
 
-            } catch (ServiceException e) {
+            } catch (ServiceException  e){
+                logger.error(e);
             }
-            return resp;
+            return resp ;
         }
 
     }

@@ -2,12 +2,6 @@
 <%@ page import="com.epam.likeit.bean.Review" %>
 <%@ page import="java.util.List" %>
 
-
-<%@ page import="com.epam.likeit.service.ReviewService" %>
-<%@ page import="com.epam.likeit.service.impl.ReviewServiceImpl" %>
-<%@ page import="com.epam.likeit.service.UserService" %>
-<%@ page import="com.epam.likeit.service.impl.UserServiceImpl" %>
-<%@ page import="com.epam.likeit.bean.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,29 +10,23 @@
 </head>
 <body>
 <form action="admin.jsp">
-    <button type="submit"><h3>Вернуться на главную страницу Администратора</h3></button>
-</form>
-
-
-<h2>Операции с отзывами о форуме</h2>
-<form action="/controller" method="post">
-    <h4>Удаление отзыва по его ID</h4>
-    <input name="id_review" type="text">
-    <button type="submit">Удалить</button>
+    <button type="submit"><h3><%=session.getAttribute("operationsWithReviews.back1")%></h3></button>
 </form>
 
 
 
 
 
-<h2>Таблица всех отзывов о форуме</h2>
+
+
+<h2><%=session.getAttribute("operationsWithReviews.table")%></h2>
 <%
     List<Review> reviewList=(List)session.getAttribute("reviews");
-    List<Review> users=(List)session.getAttribute("users");
+
     for(Review review:reviewList){
 
 %>
-<%=reviewList.get(0).getTextOfReview()%>
+
 
 
 
@@ -48,13 +36,13 @@
 
 
 
-    <tr><th>ID отзыва</th>
-        <th>ID автора отзыва</th>
+    <tr><th><%=session.getAttribute("operationsWithReviews.id")%></th>
+        <th><%=session.getAttribute("operationsWithReviews.idAuthor")%></th>
 
-        <th>Текст отзыва</th>
-        <th>Оценка сайту</th>
-        <th>Дата отзыва</th>
-        <th>Удалить отзыв</th>
+        <th><%=session.getAttribute("operationsWithReviews.text")%></th>
+        <th><%=session.getAttribute("operationsWithReviews.rating")%></th>
+        <th><%=session.getAttribute("operationsWithReviews.date")%></th>
+        <th><%=session.getAttribute("operationsWithReviews.delete")%></th>
     </tr>
 
     <tr>
@@ -68,7 +56,7 @@
             <form action="/controller" method="post"><input type="hidden" name="id_review" value="<%=review.getIdReviews()%>" >
 
                 <input type="hidden" name="command" value="delete_review">
-                <input type="submit" value="Удалить">
+                <input type="submit" value="<%=session.getAttribute("operationsWithReviews.delete")%>">
             </form>
 
 

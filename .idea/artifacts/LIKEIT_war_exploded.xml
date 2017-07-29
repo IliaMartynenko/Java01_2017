@@ -7,6 +7,11 @@
         <element id="directory" name="classes">
           <element id="module-output" name="LIKEIT" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="log4j-1.2.17" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/jstl-1.2.jar" />
+          <element id="library" level="project" name="javax.servlet.jsp.jstl-api-1.2.1" />
+        </element>
       </element>
     </root>
   </artifact>

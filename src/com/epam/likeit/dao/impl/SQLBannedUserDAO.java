@@ -4,6 +4,7 @@ import com.epam.likeit.bean.BannedUser;
 import com.epam.likeit.dao.exception.DAOException;
 import com.epam.likeit.dao.pool.DBConnectionPool;
 import com.epam.likeit.dao.BannedUserDAO;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
  * Created by mts7072572 on 01.06.2017.
  */
 public class SQLBannedUserDAO implements BannedUserDAO {
+    private static Logger logger = Logger.getLogger(SQLBannedUserDAO.class.getName());
     private final DBConnectionPool dbConnectionPool = new DBConnectionPool();
     {dbConnectionPool.createPool();}
     private static final String DELETE = "DELETE FROM banned_users WHERE id_banned_user=?";
@@ -63,8 +65,8 @@ public class SQLBannedUserDAO implements BannedUserDAO {
 
 
             dbConnectionPool.closeConnection(connection,statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }  catch (SQLException e) {
+            logger.error(e);
         }
 
 
@@ -92,7 +94,9 @@ public class SQLBannedUserDAO implements BannedUserDAO {
 
             dbConnectionPool.closeConnection(connection,statement);
         }
-        catch(SQLException e){}
+        catch (SQLException e) {
+            logger.error(e);
+        }
         return bannedUser;
 
     }
@@ -117,8 +121,7 @@ public class SQLBannedUserDAO implements BannedUserDAO {
 
 
         } catch (SQLException e) {
-            //e.printStackTrace();
-
+            logger.error(e);
         }
 
     }
@@ -141,8 +144,8 @@ public class SQLBannedUserDAO implements BannedUserDAO {
             dbConnectionPool.closeConnection(connection,statement);
         }
 
-        catch(Exception e  ){
-            e.printStackTrace();
+        catch (SQLException e) {
+            logger.error(e);
         }
     }
 
@@ -171,8 +174,8 @@ public class SQLBannedUserDAO implements BannedUserDAO {
 
             dbConnectionPool.closeConnection(connection,statement);
 
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+            logger.error(e);
         }
 
         return bannedUsers;
@@ -203,7 +206,9 @@ public class SQLBannedUserDAO implements BannedUserDAO {
 
             dbConnectionPool.closeConnection(connection,statement);
         }
-        catch(SQLException e){}
+        catch (SQLException e) {
+            logger.error(e);
+        }
         return bannedUser;
 
     }

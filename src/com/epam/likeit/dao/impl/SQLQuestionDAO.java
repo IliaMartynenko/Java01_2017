@@ -5,6 +5,7 @@ import com.epam.likeit.dao.QuestionDAO;
 import com.epam.likeit.dao.exception.DAOException;
 import com.epam.likeit.dao.pool.ConnectionPoolException;
 import com.epam.likeit.dao.pool.DBConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by mts7072572 on 01.06.2017.
  */
 public class SQLQuestionDAO implements QuestionDAO {
+    private static Logger logger = Logger.getLogger(SQLQuestionDAO.class.getName());
     private final DBConnectionPool dbConnectionPool = new DBConnectionPool();
 
     {
@@ -50,29 +52,20 @@ public class SQLQuestionDAO implements QuestionDAO {
         Connection connection = dbConnectionPool.getConnection();
 
         try {
-
-
-
             PreparedStatement statement = connection.prepareStatement(INSERT);
-
-
-
-
             statement.setInt(1, question.getIdUser());
             statement.setInt(2, question.getIdTopic());
             statement.setString(3, question.getText());
             statement.setInt(4, question.getSumOfanswers());
-
             statement.setString(5, question.getAllowed());
             statement.setDate(6, question.getDateOfCreate());
-
             statement.executeUpdate();
 
             dbConnectionPool.closeConnection(connection,statement);
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
 
 
@@ -103,6 +96,7 @@ public class SQLQuestionDAO implements QuestionDAO {
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
         } catch (SQLException e) {
+            logger.error(e);
         }
         return question;
 
@@ -131,8 +125,7 @@ public class SQLQuestionDAO implements QuestionDAO {
             dbConnectionPool.closeConnection(connection,statement);
 
         } catch (SQLException e) {
-            e.printStackTrace();
-
+            logger.error(e);
         }
 
     }
@@ -151,8 +144,8 @@ public class SQLQuestionDAO implements QuestionDAO {
 
             dbConnectionPool.closeConnection(connection,statement);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            logger.error(e);
         }
     }
 
@@ -183,8 +176,8 @@ public class SQLQuestionDAO implements QuestionDAO {
 
             dbConnectionPool.closeConnection(connection,statement);
 
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+            logger.error(e);
         }
 
         return questions;
@@ -216,7 +209,7 @@ public class SQLQuestionDAO implements QuestionDAO {
             dbConnectionPool.closeConnection(connection,statement,resultSet);
 
         } catch (SQLException e) {
-
+            logger.error(e);
         }
 
         return questions;
@@ -251,8 +244,8 @@ public class SQLQuestionDAO implements QuestionDAO {
 
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
-        } catch (SQLException e) {
-
+        }catch (SQLException e) {
+            logger.error(e);
         }
 
         return questions;
@@ -285,8 +278,8 @@ public class SQLQuestionDAO implements QuestionDAO {
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
 
-        } catch (Exception e) {
-
+        }catch (SQLException e) {
+            logger.error(e);
         }
 
         return questions;
@@ -322,8 +315,8 @@ public class SQLQuestionDAO implements QuestionDAO {
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
 
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+            logger.error(e);
         }
 
         return questions;
@@ -360,8 +353,8 @@ public class SQLQuestionDAO implements QuestionDAO {
 
             dbConnectionPool.closeConnection(connection,statement,resultSet);
 
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+            logger.error(e);
         }
         return questions;
     }
@@ -389,8 +382,7 @@ public class SQLQuestionDAO implements QuestionDAO {
             dbConnectionPool.closeConnection(connection,statement);
 
         } catch (SQLException e) {
-            e.printStackTrace();
-
+            logger.error(e);
         }
 
     }

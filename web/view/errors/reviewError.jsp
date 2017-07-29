@@ -12,13 +12,13 @@
 </head>
 <body>
 <form action="../index.jsp">
-    <button type="submit"><h3>Вернуться на начальную страницу</h3></button>
+    <button type="submit"><h3><%=session.getAttribute("answerError.back")%></h3></button>
 </form>
 
-<h2>Отзывы могут оставлять только зарегистрированные пользователи!</h2>
+<h2><%=session.getAttribute("review.message")%></h2>
 
-<form action="../signin/validate.html">
-    <button type="submit"><h3>Пройти регистрацию</h3></button>
+<form action="../signin/validate.jsp">
+    <button type="submit"><h3><%=session.getAttribute("answerError.registration")%></h3></button>
 </form>
 </body>
 </html>

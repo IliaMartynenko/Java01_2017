@@ -1,10 +1,7 @@
 <%@ page import="com.epam.likeit.bean.Question" %>
 <%@ page import="java.util.List" %>
 
-<%@ page import="com.epam.likeit.service.QuestionService" %>
-<%@ page import="com.epam.likeit.service.impl.QuestionServiceImpl" %>
-<%@ page import="com.epam.likeit.service.impl.UserServiceImpl" %>
-<%@ page import="com.epam.likeit.service.UserService" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,26 +11,9 @@
 <body>
 
 <form action="/controller">
-    <button type="submit"><h3>Вернуться на начальную страницу</h3></button>
+    <button type="submit"><h3><%=session.getAttribute("operationWithQuestions.back")%></h3></button>
 </form>
 
-
-
-<h2>Операции с темами форума</h2>
-<form action="/controller" method="post">
-    <h4>Удаление темы по его ID</h4>
-    <input name="id_question" type="text">
-    <input type="hidden" name="command" value="delete_question">
-    <button type="submit">Удалить</button>
-</form>
-<hr>
-<hr>
-<hr>
-<form action="/allowedQuestion" method="post">
-    <h4>Одобрить вопрос</h4>
-    <input name="id_question" type="text">
-    <button type="submit">Одобрить</button>
-</form>
 
 <%
     List<Question> allowedquestionList=(List)session.getAttribute("allowed_questions");
@@ -42,11 +22,11 @@
 
 %>
 <form action="admin.jsp">
-    <button type="submit"><h3>Вернуться на главную страницу Администратора</h3></button>
+    <button type="submit"><h3><%=session.getAttribute("operationWithQuestions.back1")%></h3></button>
 </form>
 
 
-<h3>Неодобренные вопросы</h3>
+<h3><%=session.getAttribute("operationWithQuestions.notAllowed")%></h3>
 
 
 <table class="tftable">
@@ -57,14 +37,14 @@
 
 
 
-    <tr><th>ID вопроса</th>
-        <th>Текст вопроса</th>
-        <th>Дата добавления</th>
+    <tr><th><%=session.getAttribute("operationWithQuestions.id")%></th>
+        <th><%=session.getAttribute("operationWithQuestions.text")%></th>
+        <th><%=session.getAttribute("operationWithQuestions.date")%></th>
 
-        <th>Количество ответов</th>
-        <th>Одобрен администратором</th>
-        <th>Одобрить вопрос</th>
-        <th>Удалить вопрос</th>
+        <th><%=session.getAttribute("operationWithQuestions.numberOf")%></th>
+        <th><%=session.getAttribute("operationWithQuestions.allowed")%></th>
+        <th><%=session.getAttribute("operationWithQuestions.allow")%></th>
+        <th><%=session.getAttribute("operationWithQuestions.delete")%></th>
     </tr>
 
     <tr>
@@ -75,15 +55,16 @@
 
         <td><a href=""><h4><%=questions.getSumOfanswers()%></h4></a></td>
         <td><a href=""><h4><%=questions.getAllowed()%></h4></a></td>
+
         <td> <form action="/controller" method="POST">
             <input type="hidden" name="id_question" value="<%=questions.getIdQuestion()%>">
             <input type="hidden" name="command" value="allow_question">
-            <input type="submit" value="Одобрить вопрос"></form></td>
+            <input type="submit" value="<%=session.getAttribute("operationWithQuestions.allow")%>"></form></td>
 
        <td> <form action="/controller" method="POST">
            <input type="hidden" name="id_question" value="<%=questions.getIdQuestion()%>">
            <input type="hidden" name="command" value="delete_question">
-           <input type="submit" value="Удалить вопрос"></form></td>
+           <input type="submit" value="<%=session.getAttribute("operationWithQuestions.delete")%>"></form></td>
 
 
     </tr>
@@ -99,7 +80,7 @@
 
 
 
-<h3>Одобренные вопросы</h3>
+<h3><%=session.getAttribute("operationWithQuestions.allowed")%></h3>
 
 
 <table class="tftable">
@@ -110,15 +91,14 @@
 
 
 
-    <tr><th>ID вопроса</th>
+    <tr><th><%=session.getAttribute("operationWithQuestions.id")%></th>
+        <th><%=session.getAttribute("operationWithQuestions.text")%></th>
+        <th><%=session.getAttribute("operationWithQuestions.date")%></th>
 
-        <th>Текст вопроса</th>
-        <th>Дата добавления</th>
+        <th><%=session.getAttribute("operationWithQuestions.numberOf")%></th>
+        <th><%=session.getAttribute("operationWithQuestions.allowed")%></th>
 
-        <th>Количество ответов</th>
-        <th>Одобрен администратором</th>
-        <th>Удалить вопрос</th>
-
+        <th><%=session.getAttribute("operationWithQuestions.delete")%></th>
     </tr>
 
     <tr>
@@ -132,7 +112,7 @@
         <td> <form action="/controller" method="POST">
             <input type="hidden" name="id_question" value="<%=question.getIdQuestion()%>">
             <input type="hidden" name="command" value="delete_question">
-            <input type="submit" value="Удалить вопрос"></form></td>
+            <input type="submit" value="<%=session.getAttribute("operationWithQuestions.delete")%>"></form></td>
 
 
     </tr>

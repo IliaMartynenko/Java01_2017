@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Бан</title>
+    <title>Ban</title>
 </head>
 <body>
-<h3>В данный момент вы не можете оставлять сообщения на форуме по причине бана.</h3>
+<h3><%=session.getAttribute("errorBan.message")%></h3>
 
 </body>
 </html>

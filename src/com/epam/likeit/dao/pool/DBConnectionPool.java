@@ -1,6 +1,9 @@
 package com.epam.likeit.dao.pool;
 
 
+import com.epam.likeit.dao.impl.SQLTopicDAO;
+import org.apache.log4j.Logger;
+
 import java.sql.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -9,7 +12,7 @@ import java.util.concurrent.BlockingQueue;
  * Created by mts7072572 on 27.05.2017.
  */
 public class DBConnectionPool {
-
+    private static Logger logger = Logger.getLogger(SQLTopicDAO.class.getName());
 
 
     private BlockingQueue<Connection> pool = new ArrayBlockingQueue<Connection>(20, true);
@@ -23,8 +26,8 @@ public class DBConnectionPool {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 pool.add(DriverManager.getConnection(url, user, password));
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (SQLException | ClassNotFoundException e) {
+                logger.error(e);
             }
         }
     }
@@ -52,8 +55,10 @@ public class DBConnectionPool {
                 pool.put(conn);
 
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            }
+
+            catch (InterruptedException e) {
+                logger.error(e);
             }
             try{statement.close();}
             catch(SQLException e){
@@ -72,13 +77,14 @@ public class DBConnectionPool {
             try {
                 pool.put(conn);
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            }catch (InterruptedException e) {
+                logger.error(e);
             }
             try{statement.close();
             resultSet.close();}
-            catch(SQLException e){
-                e.printStackTrace();
+
+            catch (SQLException e) {
+                logger.error(e);
             }
 
 

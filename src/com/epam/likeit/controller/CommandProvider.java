@@ -1,6 +1,8 @@
 package com.epam.likeit.controller;
 
+import com.epam.likeit.controller.factory.CommandFactory;
 import com.epam.likeit.controller.impl.*;
+import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +12,7 @@ import java.util.Map;
  */
 
   public final class CommandProvider {
+    private static Logger logger = Logger.getLogger(CommandFactory.class.getName());
         private final Map<CommandEnum, Command> repository = new HashMap<>();
         CommandProvider(){
             repository.put(CommandEnum.ADD_QUESTION, new AddQuestionCommand());
@@ -29,6 +32,8 @@ import java.util.Map;
             repository.put(CommandEnum.GET_RATINGS, new GetRatingsCommand());
             repository.put(CommandEnum.REGISTRATION, new  RegistrationCommand());
             repository.put(CommandEnum.GET_USER, new GetUserCommand());
+            repository.put(CommandEnum.GET_QUESTION_BY_RATING, new  GetQuestionByRatingCommand());
+
 
 
 
@@ -39,9 +44,8 @@ import java.util.Map;
             try{
                 commandName = CommandEnum.valueOf(name.toUpperCase());
                 command = repository.get(commandName);
-            }catch(IllegalArgumentException e){
-                e.printStackTrace();
-
+            } catch (IllegalArgumentException  e){
+                logger.error(e);
             }
             return command;
         }

@@ -12,9 +12,9 @@
 </head>
 <body>
 
-<h2>You have successfully registered on the site!</h2>
+<h2><%=session.getAttribute("registration.sucess")%></h2>
 
-<button type="button"><a href="../index.jsp">Back to home page!</a></button>
+<button type="button"><a href="../index.jsp"><%=session.getAttribute("errorBan.back")%></a></button>
 
 
 

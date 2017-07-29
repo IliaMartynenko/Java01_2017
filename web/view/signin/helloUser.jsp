@@ -11,6 +11,8 @@
     <title>User</title>
 </head>
 <body>
-Hello,User!
+<button type="button"><a href="../index.jsp"><h3><%=session.getAttribute("errorBan.back")%></h3></a></button>
+<%=session.getAttribute("helloUser.message")%>
 </body>
+
 </html>

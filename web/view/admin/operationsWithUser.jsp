@@ -16,28 +16,17 @@
 </head>
 <body>
 <form action="admin.jsp">
-    <button type="submit"><h3>Вернуться на главную страницу Администратора</h3></button>
+    <button type="submit"><h3><%=session.getAttribute("operationsWithUsers.back1")%></h3></button>
 </form>
 
-<form action="/c" method="post">
-    <h4>Забанить пользователя по имени</h4>
-    <input name="name" value="Введите имя..." type="text">
-    <br>
-    <br>
-    <textarea rows="5" cols="35"  name="reason_of_ban">Причина бана...</textarea>
-    <br>
-    <h5>Количество дней блокировки:</h5>
-    <input name="duration" type="number" min="1" max="365">
 
-    <button type="submit">Удалить</button>
-</form>
 
 <hr>
 <hr>
 <hr>
 
 
-<h2>Таблица всех пользователей форума</h2>
+<h2><%=session.getAttribute("operationsWithUsers.table")%></h2>
 
 
 
@@ -53,36 +42,36 @@
 
 
 
-    <tr><th>ID пользователя</th>
-        <th>Логин</th>
-        <th>Пароль</th>
-        <th>Имя</th>
-        <th>Почтовый ящик</th>
-        <th>Возраст</th>
-        <th>Страна</th>
-        <th>Количество вопросов</th>
-        <th>Рейтинг</th>
-        <th>Забанить пользователя</th>
+    <tr><th><%=session.getAttribute("operationsWithUsers.id")%></th>
+        <th><%=session.getAttribute("operationsWithUsers.login")%></th>
 
-        <th>Удалить пользователя</th>
+        <th><%=session.getAttribute("operationsWithUsers.name")%></th>
+        <th><%=session.getAttribute("operationsWithUsers.mail")%></th>
+        <th><%=session.getAttribute("operationsWithUsers.age")%></th>
+        <th><%=session.getAttribute("operationsWithUsers.country")%></th>
+        <th><%=session.getAttribute("operationsWithUsers.numberOfThemes")%></th>
+        <th><%=session.getAttribute("operationsWithUsers.rating")%></th>
+        <th><%=session.getAttribute("operationsWithUsers.ban")%></th>
+
+        <th><%=session.getAttribute("operationsWithUsers.delete")%></th>
 
     </tr>
 
     <tr>
         <td><a href=""><%=us.getId()%></a></td>
         <td><a href=""><%=us.getLogin()%></a></td>
-        <td><%=us.getPassword()%></td>
+
         <td><%=us.getName()%></td>
         <td><%=us.getMail()%></td>
         <td><%=us.getAge()%></td>
         <td><%=us.getCountry()%></td>
         <td><%=us.getNumberOfQuestions()%></td>
         <td><%=us.getNumberOfRatings()%></td>
-        <td><form action="/controller" method="post"><input type="text" name="duration" value="Количество дней бана" >
-            <textarea name="reason_of_ban" rows="7" cols="20">Введите причину бана</textarea>
+        <td><form action="/controller" method="post"><input type="text" name="duration" value="<%=session.getAttribute("operationsWithUsers.numberOfDays")%>" >
+            <textarea name="reason_of_ban" rows="7" cols="20"><%=session.getAttribute("operationsWithUsers.reasonOfBan")%></textarea>
             <input type="hidden" name="id_user" value="<%=us.getId()%>">
             <input type="hidden" name="command" value="ban_user">
-            <input type="submit">
+            <input type="submit" value="<%=session.getAttribute("operationsWithUsers.ban")%>">
         </form>
 
         </td>
@@ -90,7 +79,7 @@
         <td>
             <form action="/controller" method="post"><input type="hidden" name="id" value="<%=us.getId()%>" >
                 <input type="hidden" name="command" value="delete_user">
-                <input type="submit">
+                <input type="submit" value="<%=session.getAttribute("operationsWithUsers.delete")%>">
         </form>
 
         </td>
